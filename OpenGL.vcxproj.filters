@@ -38,8 +38,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\shaders\default1.vert" />
-    <None Include="src\shaders\default1.frag" />
+    <None Include="src\shaders\container.vert" />
+    <None Include="src\shaders\container.frag" />
     <None Include="src\shaders\default2.frag" />
     <None Include="src\shaders\default2.vert" />
     <None Include="src\model_loading.vert" />
