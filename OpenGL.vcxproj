@@ -148,6 +148,7 @@
     <None Include="src\shaders\default1.vert" />
     <None Include="src\shaders\default2.frag" />
     <None Include="src\shaders\default2.vert" />
+    <None Include="src\shaders\skybox.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\assimp\include\config.h" />
@@ -177,6 +178,9 @@
     <Image Include="src\textures\marble.jpg" />
     <Image Include="src\textures\metal.png" />
     <Image Include="src\textures\wall.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\shaders\skybox.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

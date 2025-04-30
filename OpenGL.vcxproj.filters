@@ -44,6 +44,7 @@
     <None Include="src\shaders\default2.vert" />
     <None Include="src\model_loading.vert" />
     <None Include="src\model_loading.frag" />
+    <None Include="src\shaders\skybox.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -123,5 +124,8 @@
     <Image Include="src\textures\skybox\top.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\shaders\skybox.vert" />
   </ItemGroup>
 </Project>
