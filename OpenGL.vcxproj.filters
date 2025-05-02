@@ -56,8 +56,8 @@
     <None Include="src\shaders\normal.vert" />
     <None Include="src\shaders\default.frag" />
     <None Include="src\shaders\default.vert" />
-    <None Include="src\shaders\quad.frag" />
-    <None Include="src\shaders\quad.vert" />
+    <None Include="src\shaders\instancing.frag" />
+    <None Include="src\shaders\instancing.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
