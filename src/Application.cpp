@@ -87,6 +87,7 @@ int main()
 	Shader screenShader("src/shaders/default2.vert", "src/shaders/default2.frag");
 	Shader skyboxShader("src/shaders/skybox.vert", "src/shaders/skybox.frag");
     Shader geoShader("src/shaders/points.vert", "src/shaders/points.frag", "src/shaders/points.geo");
+    Shader explodeShader("src/shaders/explode.vert", "src/shaders/explode.frag", "src/shaders/explode.geo");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -372,6 +373,8 @@ int main()
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 
+    Model nanosuit("src/resources/backpack/backpack.obj");
+
     // render loop
     // -----------
     while(!glfwWindowShouldClose(window))
@@ -388,15 +391,29 @@ int main()
 
         // render
         // ------
-       // render
-        // ------
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+
+        // configure transformation matrices
+        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 1.0f, 100.0f);
+        glm::mat4 view = camera.GetViewMatrix();;
+        glm::mat4 model = glm::mat4(1.0f);
+        explodeShader.use();
+        explodeShader.setMat4("projection", projection);
+        explodeShader.setMat4("view", view);
+        explodeShader.setMat4("model", model);
+
+        // add time component to geometry shader in the form of a uniform
+        explodeShader.setFloat("time", static_cast<float>(glfwGetTime()));
+
+        // draw model
+        nanosuit.Draw(shader);
+
         //----------------------------------------
 
-        geoShader.use();
-        glBindVertexArray(pointsVAO);
-        glDrawArrays(GL_POINTS, 0, 4);
+       
+
        
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
