@@ -146,11 +146,16 @@
     <None Include="src\model_loading.vert" />
     <None Include="src\shaders\container.frag" />
     <None Include="src\shaders\container.vert" />
+    <None Include="src\shaders\default.frag" />
+    <None Include="src\shaders\default.vert" />
     <None Include="src\shaders\default2.frag" />
     <None Include="src\shaders\default2.vert" />
     <None Include="src\shaders\explode.frag" />
     <None Include="src\shaders\explode.geo" />
     <None Include="src\shaders\explode.vert" />
+    <None Include="src\shaders\normal.frag" />
+    <None Include="src\shaders\normal.geo" />
+    <None Include="src\shaders\normal.vert" />
     <None Include="src\shaders\points.frag" />
     <None Include="src\shaders\points.geo" />
     <None Include="src\shaders\points.vert" />

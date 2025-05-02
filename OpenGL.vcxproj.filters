@@ -51,6 +51,11 @@
     <None Include="src\shaders\explode.frag" />
     <None Include="src\shaders\explode.geo" />
     <None Include="src\shaders\explode.vert" />
+    <None Include="src\shaders\normal.frag" />
+    <None Include="src\shaders\normal.geo" />
+    <None Include="src\shaders\normal.vert" />
+    <None Include="src\shaders\default.frag" />
+    <None Include="src\shaders\default.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">

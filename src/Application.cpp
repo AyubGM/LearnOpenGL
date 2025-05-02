@@ -83,11 +83,12 @@ int main()
 
     // build and compile shaders
     // -------------------------
-    Shader shader("src/shaders/container.vert", "src/shaders/container.frag");
+    Shader shader("src/shaders/default.vert", "src/shaders/default2.frag");
 	Shader screenShader("src/shaders/default2.vert", "src/shaders/default2.frag");
 	Shader skyboxShader("src/shaders/skybox.vert", "src/shaders/skybox.frag");
     Shader geoShader("src/shaders/points.vert", "src/shaders/points.frag", "src/shaders/points.geo");
     Shader explodeShader("src/shaders/explode.vert", "src/shaders/explode.frag", "src/shaders/explode.geo");
+    Shader normalShader("src/shaders/normal.vert", "src/shaders/normal.frag", "src/shaders/normal.geo");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -349,31 +350,34 @@ int main()
 
     // generate texture
     unsigned int textureColorbuffer;
-    glGenTextures(1, &textureColorbuffer);
-    glBindTexture(GL_TEXTURE_2D, textureColorbuffer);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 800, 600, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glBindTexture(GL_TEXTURE_2D, 0);
+    {
+        glGenTextures(1, &textureColorbuffer);
+        glBindTexture(GL_TEXTURE_2D, textureColorbuffer);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 800, 600, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glBindTexture(GL_TEXTURE_2D, 0);
 
-    // attach it to currently bound framebuffer object
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureColorbuffer, 0);
+        // attach it to currently bound framebuffer object
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureColorbuffer, 0);
+    }
 
     // renderbuffer object
     unsigned int rbo;
-    glGenRenderbuffers(1, &rbo);
+    {
+        glGenRenderbuffers(1, &rbo);
 
-    glBindRenderbuffer(GL_RENDERBUFFER, rbo);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 800, 600);
-    glBindRenderbuffer(GL_RENDERBUFFER, 0);
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
+        glBindRenderbuffer(GL_RENDERBUFFER, rbo);
+        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 800, 600);
+        glBindRenderbuffer(GL_RENDERBUFFER, 0);
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
 
-    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-        std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+            std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    }
 
-
-    Model nanosuit("src/resources/backpack/backpack.obj");
+    Model backpack("src/resources/backpack/backpack.obj");
 
     // render loop
     // -----------
@@ -396,19 +400,24 @@ int main()
 
 
         // configure transformation matrices
-        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 1.0f, 100.0f);
+        glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 1.0f, 100.0f);
         glm::mat4 view = camera.GetViewMatrix();;
         glm::mat4 model = glm::mat4(1.0f);
-        explodeShader.use();
-        explodeShader.setMat4("projection", projection);
-        explodeShader.setMat4("view", view);
-        explodeShader.setMat4("model", model);
+        shader.use();
+        shader.setMat4("projection", projection);
+        shader.setMat4("view", view);
+        shader.setMat4("model", model);
 
-        // add time component to geometry shader in the form of a uniform
-        explodeShader.setFloat("time", static_cast<float>(glfwGetTime()));
+        // draw model as usual
+        backpack.Draw(shader);
 
-        // draw model
-        nanosuit.Draw(shader);
+        // then draw model with normal visualizing geometry shader
+        normalShader.use();
+        normalShader.setMat4("projection", projection);
+        normalShader.setMat4("view", view);
+        normalShader.setMat4("model", model);
+
+        backpack.Draw(normalShader);
 
         //----------------------------------------
 
