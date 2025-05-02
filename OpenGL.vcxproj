@@ -148,6 +148,9 @@
     <None Include="src\shaders\container.vert" />
     <None Include="src\shaders\default2.frag" />
     <None Include="src\shaders\default2.vert" />
+    <None Include="src\shaders\points.frag" />
+    <None Include="src\shaders\points.geo" />
+    <None Include="src\shaders\points.vert" />
     <None Include="src\shaders\skybox.frag" />
   </ItemGroup>
   <ItemGroup>

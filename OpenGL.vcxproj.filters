@@ -45,6 +45,9 @@
     <None Include="src\model_loading.vert" />
     <None Include="src\model_loading.frag" />
     <None Include="src\shaders\skybox.frag" />
+    <None Include="src\shaders\points.vert" />
+    <None Include="src\shaders\points.frag" />
+    <None Include="src\shaders\points.geo" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">

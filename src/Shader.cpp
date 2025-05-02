@@ -57,6 +57,53 @@ std::string get_file_contents(const char* filename) {
 		glDeleteShader(fragmentShader);
 	}
 
+	Shader::Shader(const char* vertexFile, const char* fragmentFile, const char* geometryPath)
+	{
+		std::string vertexCode = get_file_contents(vertexFile);
+		std::string fragmentCode = get_file_contents(fragmentFile);
+		std::string geometryCode = get_file_contents(geometryPath);
+
+		const char* vertexSource = vertexCode.c_str();
+		const char* fragmentSource = fragmentCode.c_str();
+		const char* geometrySource = geometryCode.c_str();
+
+		// creating the vertex shader 
+		unsigned int vertexShader;
+		vertexShader = glCreateShader(GL_VERTEX_SHADER);
+		glShaderSource(vertexShader, 1, &vertexSource, NULL);
+		glCompileShader(vertexShader);
+		checkCompileErrors(vertexShader, "VERTEX");
+
+		//creating the fragment shader AKA the color shader
+		unsigned int fragmentShader;
+		fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+		glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
+		glCompileShader(fragmentShader);
+		checkCompileErrors(fragmentShader, "FRAGMENT");
+
+		//creating the geometry shader 
+		unsigned int geometryShader;
+		geometryShader = glCreateShader(GL_GEOMETRY_SHADER);
+		glShaderSource(geometryShader, 1, &geometrySource, NULL);
+		glCompileShader(geometryShader);
+		checkCompileErrors(geometryShader, "GEOMETRY");
+
+
+
+
+		//link the shaders to the program
+
+		ID = glCreateProgram();
+		glAttachShader(ID, vertexShader);
+		glAttachShader(ID, fragmentShader);
+		glAttachShader(ID, geometryShader);
+		glLinkProgram(ID);
+		checkCompileErrors(ID, "PROGRAM");
+
+		glDeleteShader(vertexShader);
+		glDeleteShader(fragmentShader);
+	}
+
 	void Shader::use()
 	{
 		glUseProgram(ID);
