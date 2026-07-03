@@ -111,16 +111,16 @@ void Window::ProcessInput(float deltaTime)
         glfwSetWindowShouldClose(m_Window, true);
 
     if (glfwGetKey(m_Window, GLFW_KEY_W) == GLFW_PRESS)
-        m_Camera.ProcessKeyboard(FORWARD, deltaTime);
+        m_Camera.ProcessKeyboard(CameraMovement::FORWARD, deltaTime);
     if (glfwGetKey(m_Window, GLFW_KEY_S) == GLFW_PRESS)
-        m_Camera.ProcessKeyboard(BACKWARD, deltaTime);
+        m_Camera.ProcessKeyboard(CameraMovement::BACKWARD, deltaTime);
     if (glfwGetKey(m_Window, GLFW_KEY_A) == GLFW_PRESS)
-        m_Camera.ProcessKeyboard(LEFT, deltaTime);
+        m_Camera.ProcessKeyboard(CameraMovement::LEFT, deltaTime);
     if (glfwGetKey(m_Window, GLFW_KEY_D) == GLFW_PRESS)
-        m_Camera.ProcessKeyboard(RIGHT, deltaTime);
+        m_Camera.ProcessKeyboard(CameraMovement::RIGHT, deltaTime);
     if (glfwGetKey(m_Window, GLFW_KEY_SPACE) == GLFW_PRESS)
-        m_Camera.ProcessKeyboard(Jump, deltaTime);
+        m_Camera.ProcessKeyboard(CameraMovement::Jump, deltaTime);
     if (glfwGetKey(m_Window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
-        m_Camera.ProcessKeyboard(Down, deltaTime);
+        m_Camera.ProcessKeyboard(CameraMovement::Down, deltaTime);
 }
 

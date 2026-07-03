@@ -108,17 +108,27 @@ private:
 class VertexBuffer
 {
 public:
+	VertexBuffer() : m_ID(0) {}
 	VertexBuffer(float* vertices, uint32_t size);
+	VertexBuffer operator() (float* vertices, uint32_t size) {
+		return VertexBuffer(vertices, size);
+	}
 
-	void Bind();
-	void UnBind();
+	void SetData(float* vertices, uint32_t size);
+	void Bind() const;
+	void UnBind() const;
 	void Delete();
 	const BufferLayout& GetLayout() const { return m_Layout; }
 	void SetLayout(const BufferLayout& layout) { m_Layout = layout; }
 
+
+	VertexBuffer(const VertexBuffer&) = delete;
+	VertexBuffer& operator=(const VertexBuffer&) = delete;
+
 private:
 	uint32_t m_ID;
 	BufferLayout m_Layout;
+	bool m_Initialized = false;
 };
 
 

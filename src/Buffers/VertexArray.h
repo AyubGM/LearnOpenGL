@@ -9,7 +9,7 @@ class VertexArray
 public:
 	VertexArray();
 
-	void AddVertexBuffer(VertexBuffer VertexBuffer);
+	void AddVertexBuffer(const VertexBuffer& VertexBuffer) const;
 
 	void Bind();
 	void UnBind();

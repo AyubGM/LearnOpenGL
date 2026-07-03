@@ -4,7 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 // Defines several possible options for camera movement. Used as abstraction to stay away from window-system specific input methods
-enum Camera_Movement {
+enum class CameraMovement {
     FORWARD,
     BACKWARD,
     LEFT,
@@ -41,30 +41,19 @@ public:
 	float Zoom;
 
 
-	//ref valuse for me
-	/*glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
-	glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
-	glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
-	float mixValue = 0.009f;*/
-
-	Camera(glm::vec3 Position = glm::vec3(0.0f, 2.0f, 3.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float yaw = YAW, float pitch = PITCH)
-		: Position(Position), Front(glm::vec3(0.0f, 0.0f, -1.0f)), WorldUp(up), Yaw(yaw), Pitch(pitch), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
+	Camera(glm::vec3 position = glm::vec3(0.0f, 2.0f, 3.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f),
+		float yaw = YAW, float pitch = PITCH)
+		: Position(position), Front(glm::vec3(0.0f, 0.0f, -1.0f)), WorldUp(up), 
+		Yaw(yaw), Pitch(pitch), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
 	{
-		//Position = Position;
-		//WorldUp = up;
-		//Yaw = yaw;
-		//Pitch = pitch;
 		UpdateCameraVectors();
 	}
 
 
 	Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch)
-		: Position(glm::vec3(posX, posY, posZ)), Front(glm::vec3(0.0f, 0.0f, -1.0f)), WorldUp(glm::vec3(upX, upY, upZ)), Yaw(yaw), Pitch(pitch), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
+		: Position(glm::vec3(posX, posY, posZ)), Front(glm::vec3(0.0f, 0.0f, -1.0f)), 
+		WorldUp(glm::vec3(upX, upY, upZ)), Yaw(yaw), Pitch(pitch), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
 	{
-		//Position = Position;
-		//WorldUp = up;
-		//Yaw = yaw;
-		//Pitch = pitch;
 		UpdateCameraVectors();
 	}
 
@@ -73,22 +62,23 @@ public:
 		return glm::lookAt(Position, Position + Front, Up);
 	}
 
-	void ProcessKeyboard(Camera_Movement direction, float deltaTime)
+	void ProcessKeyboard(CameraMovement direction, float deltaTime)
 	{
 		float velocity = MovementSpeed * deltaTime;
-		if (direction == FORWARD)
+
+		if (direction == CameraMovement::FORWARD)
 			Position += Front * velocity;
-		if (direction == BACKWARD)
+		if (direction == CameraMovement::BACKWARD)
 			Position -= Front * velocity;
-		if (direction == LEFT)
+		if (direction == CameraMovement::LEFT)
 			Position -= Right * velocity;
-		if (direction == RIGHT)
+		if (direction == CameraMovement::RIGHT)
 			Position += Right * velocity;
-		if (direction == Jump) 
+		if (direction == CameraMovement::Jump)
 		{
 			Position += WorldUp * velocity;
 		}
-		if (direction == Down)
+		if (direction == CameraMovement::Down)
 		{
 			Position -= WorldUp * velocity;
 		}
@@ -96,12 +86,12 @@ public:
 		//Position.y = 0.0f;
 	}
 
-	void ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch = true)
+	void ProcessMouseMovement(float xOffset, float yOffset, GLboolean constrainPitch = true)
 	{
-		xoffset *= MouseSensitivity;
-		yoffset *= MouseSensitivity;
-		Yaw += xoffset;
-		Pitch += yoffset;
+		xOffset *= MouseSensitivity;
+		yOffset *= MouseSensitivity;
+		Yaw += xOffset;
+		Pitch += yOffset;
 		if (constrainPitch)
 		{
 			if (Pitch > 89.0f)
@@ -112,9 +102,9 @@ public:
 		UpdateCameraVectors();
 	}
 
-	void ProcessMouseScroll(float yoffset)
+	void ProcessMouseScroll(float yOffset)
 	{
-		Zoom -= (float)yoffset;
+		Zoom -= yOffset;
 		if (Zoom < 1.0f)
 			Zoom = 1.0f;
 		if (Zoom > 45.0f)

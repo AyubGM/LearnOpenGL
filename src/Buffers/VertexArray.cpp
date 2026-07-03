@@ -28,7 +28,7 @@ VertexArray::VertexArray()
 	glGenVertexArrays(1, &m_ID);
 };
 
-void VertexArray::AddVertexBuffer(VertexBuffer vertexBuffer)
+void VertexArray::AddVertexBuffer(const VertexBuffer& vertexBuffer) const
 {
 	glBindVertexArray(m_ID);
 	vertexBuffer.Bind();

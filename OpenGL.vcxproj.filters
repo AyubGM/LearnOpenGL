@@ -39,6 +39,15 @@
     <ClCompile Include="src\Common\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Buffers\FrameBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextureLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\FrameBufferExample.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaders\container.vert" />
@@ -61,6 +70,12 @@
     <None Include="src\shaders\default.vert" />
     <None Include="src\shaders\instancing.frag" />
     <None Include="src\shaders\instancing.vert" />
+    <None Include="src\shaders\FrameBuffer.vert" />
+    <None Include="src\shaders\FrameBuffer.frag" />
+    <None Include="src\shaders\FrameBuffer\5.1.framebuffers.vert" />
+    <None Include="src\shaders\FrameBuffer\5.1.framebuffers.frag" />
+    <None Include="src\shaders\FrameBuffer\5.1.framebuffers_screen.vert" />
+    <None Include="src\shaders\FrameBuffer\5.1.framebuffers_screen.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -94,6 +109,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Common\Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Buffers\FrameBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TextureLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\FrameBufferExample.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\IExample.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

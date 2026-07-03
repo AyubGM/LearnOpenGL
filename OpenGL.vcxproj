@@ -136,15 +136,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\Buffers\FrameBuffer.cpp" />
     <ClCompile Include="src\Common\Window.cpp" />
     <ClCompile Include="src\Buffers\IndexBuffer.cpp" />
     <ClCompile Include="External\glad.c" />
+    <ClCompile Include="src\Examples\FrameBufferExample.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="External\stb_image.cpp" />
     <ClCompile Include="src\Buffers\VertexArray.cpp" />
     <ClCompile Include="src\Buffers\VertexBuffer.cpp" />
+    <ClCompile Include="src\TextureLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="src\shaders\FrameBuffer.frag" />
+    <None Include="src\shaders\FrameBuffer.vert" />
+    <None Include="src\shaders\FrameBuffer\5.1.framebuffers.frag" />
+    <None Include="src\shaders\FrameBuffer\5.1.framebuffers.vert" />
+    <None Include="src\shaders\FrameBuffer\5.1.framebuffers_screen.frag" />
+    <None Include="src\shaders\FrameBuffer\5.1.framebuffers_screen.vert" />
     <None Include="src\shaders\model_loading.frag" />
     <None Include="src\shaders\model_loading.vert" />
     <None Include="src\shaders\container.frag" />
@@ -170,7 +179,10 @@
     <ClInclude Include="include\assimp\include\config.h" />
     <ClInclude Include="include\assimp\include\revision.h" />
     <ClInclude Include="include\stb_image.h" />
+    <ClInclude Include="src\Buffers\FrameBuffer.h" />
     <ClInclude Include="src\Common\Window.h" />
+    <ClInclude Include="src\Examples\IExample.h" />
+    <ClInclude Include="src\Examples\FrameBufferExample.h" />
     <ClInclude Include="src\Mesh.h" />
     <ClInclude Include="src\Buffers\IndexBuffer.h" />
     <ClInclude Include="src\Camera.h" />
@@ -178,6 +190,7 @@
     <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\Buffers\VertexArray.h" />
     <ClInclude Include="src\Buffers\VertexBuffer.h" />
+    <ClInclude Include="src\TextureLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\textures\awesomeface.png" />

@@ -5,8 +5,6 @@ VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGL", "OpenGL.vcxproj", "{1F33E52B-6A77-4A70-9D91-B7D2DC4AF8FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld", "..\HelloWorld\HelloWorld.csproj", "{E049A448-11D2-4B85-9A0A-FC319DC720FE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,18 +27,6 @@ Global
 		{1F33E52B-6A77-4A70-9D91-B7D2DC4AF8FA}.Release|x64.Build.0 = Release|x64
 		{1F33E52B-6A77-4A70-9D91-B7D2DC4AF8FA}.Release|x86.ActiveCfg = Release|Win32
 		{1F33E52B-6A77-4A70-9D91-B7D2DC4AF8FA}.Release|x86.Build.0 = Release|Win32
-		{E049A448-11D2-4B85-9A0A-FC319DC720FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E049A448-11D2-4B85-9A0A-FC319DC720FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E049A448-11D2-4B85-9A0A-FC319DC720FE}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{E049A448-11D2-4B85-9A0A-FC319DC720FE}.Debug|x64.Build.0 = Debug|Any CPU
-		{E049A448-11D2-4B85-9A0A-FC319DC720FE}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{E049A448-11D2-4B85-9A0A-FC319DC720FE}.Debug|x86.Build.0 = Debug|Any CPU
-		{E049A448-11D2-4B85-9A0A-FC319DC720FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E049A448-11D2-4B85-9A0A-FC319DC720FE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E049A448-11D2-4B85-9A0A-FC319DC720FE}.Release|x64.ActiveCfg = Release|Any CPU
-		{E049A448-11D2-4B85-9A0A-FC319DC720FE}.Release|x64.Build.0 = Release|Any CPU
-		{E049A448-11D2-4B85-9A0A-FC319DC720FE}.Release|x86.ActiveCfg = Release|Any CPU
-		{E049A448-11D2-4B85-9A0A-FC319DC720FE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
