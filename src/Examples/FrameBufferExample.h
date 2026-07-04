@@ -4,6 +4,7 @@
 #include "../Buffers/FrameBuffer.h"
 #include "../Buffers/VertexArray.h"
 #include "../Buffers/VertexBuffer.h"
+#include "../Camera.h"
 
 class FrameBufferExample : public IExample
 {
@@ -14,6 +15,7 @@ public:
 
 
 	void Run(const glm::mat4& view, const glm::mat4& projection) override;
+	void Exercise(glm::mat4& view, glm::mat4& projection, Camera camera);
 
 
 private:

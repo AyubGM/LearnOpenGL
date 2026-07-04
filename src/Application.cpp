@@ -57,7 +57,8 @@ int main()
         g_Projection = glm::perspective(glm::radians(45.0f), (float)window.GetWidth() / (float)window.GetHeight(), 0.1f, 1000.0f);
         g_View = camera.GetViewMatrix();
 
-        frameBufferExample.Run(g_View, g_Projection);
+        //frameBufferExample.Run(g_View, g_Projection);
+        frameBufferExample.Exercise(g_View, g_Projection, camera);
 
    
         window.OnUpdate();
