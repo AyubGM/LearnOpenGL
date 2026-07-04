@@ -48,30 +48,11 @@
     <ClCompile Include="src\Examples\FrameBufferExample.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Examples\CubeMapExample.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\shaders\container.vert" />
-    <None Include="src\shaders\container.frag" />
-    <None Include="src\shaders\default2.frag" />
-    <None Include="src\shaders\default2.vert" />
-    <None Include="src\shaders\model_loading.vert" />
-    <None Include="src\shaders\model_loading.frag" />
-    <None Include="src\shaders\skybox.frag" />
-    <None Include="src\shaders\points.vert" />
-    <None Include="src\shaders\points.frag" />
-    <None Include="src\shaders\points.geo" />
-    <None Include="src\shaders\explode.frag" />
-    <None Include="src\shaders\explode.geo" />
-    <None Include="src\shaders\explode.vert" />
-    <None Include="src\shaders\normal.frag" />
-    <None Include="src\shaders\normal.geo" />
-    <None Include="src\shaders\normal.vert" />
-    <None Include="src\shaders\default.frag" />
-    <None Include="src\shaders\default.vert" />
-    <None Include="src\shaders\instancing.frag" />
-    <None Include="src\shaders\instancing.vert" />
-    <None Include="src\shaders\FrameBuffer.vert" />
-    <None Include="src\shaders\FrameBuffer.frag" />
     <None Include="src\shaders\FrameBuffer\5.1.framebuffers.vert" />
     <None Include="src\shaders\FrameBuffer\5.1.framebuffers.frag" />
     <None Include="src\shaders\FrameBuffer\5.1.framebuffers_screen.vert" />
@@ -123,6 +104,9 @@
     <ClInclude Include="src\Examples\IExample.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Examples\CubeMapExample.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\textures\awesomeface.png">
@@ -170,8 +154,5 @@
     <Image Include="src\textures\skybox\top.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="src\shaders\skybox.vert" />
   </ItemGroup>
 </Project>

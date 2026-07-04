@@ -140,6 +140,7 @@
     <ClCompile Include="src\Common\Window.cpp" />
     <ClCompile Include="src\Buffers\IndexBuffer.cpp" />
     <ClCompile Include="External\glad.c" />
+    <ClCompile Include="src\Examples\CubeMapExample.cpp" />
     <ClCompile Include="src\Examples\FrameBufferExample.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="External\stb_image.cpp" />
@@ -148,32 +149,10 @@
     <ClCompile Include="src\TextureLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\shaders\FrameBuffer.frag" />
-    <None Include="src\shaders\FrameBuffer.vert" />
     <None Include="src\shaders\FrameBuffer\5.1.framebuffers.frag" />
     <None Include="src\shaders\FrameBuffer\5.1.framebuffers.vert" />
     <None Include="src\shaders\FrameBuffer\5.1.framebuffers_screen.frag" />
     <None Include="src\shaders\FrameBuffer\5.1.framebuffers_screen.vert" />
-    <None Include="src\shaders\model_loading.frag" />
-    <None Include="src\shaders\model_loading.vert" />
-    <None Include="src\shaders\container.frag" />
-    <None Include="src\shaders\container.vert" />
-    <None Include="src\shaders\default.frag" />
-    <None Include="src\shaders\default.vert" />
-    <None Include="src\shaders\default2.frag" />
-    <None Include="src\shaders\default2.vert" />
-    <None Include="src\shaders\explode.frag" />
-    <None Include="src\shaders\explode.geo" />
-    <None Include="src\shaders\explode.vert" />
-    <None Include="src\shaders\normal.frag" />
-    <None Include="src\shaders\normal.geo" />
-    <None Include="src\shaders\normal.vert" />
-    <None Include="src\shaders\points.frag" />
-    <None Include="src\shaders\points.geo" />
-    <None Include="src\shaders\points.vert" />
-    <None Include="src\shaders\instancing.frag" />
-    <None Include="src\shaders\instancing.vert" />
-    <None Include="src\shaders\skybox.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\assimp\include\config.h" />
@@ -181,6 +160,7 @@
     <ClInclude Include="include\stb_image.h" />
     <ClInclude Include="src\Buffers\FrameBuffer.h" />
     <ClInclude Include="src\Common\Window.h" />
+    <ClInclude Include="src\Examples\CubeMapExample.h" />
     <ClInclude Include="src\Examples\IExample.h" />
     <ClInclude Include="src\Examples\FrameBufferExample.h" />
     <ClInclude Include="src\Mesh.h" />
@@ -208,9 +188,6 @@
     <Image Include="src\textures\marble.jpg" />
     <Image Include="src\textures\metal.png" />
     <Image Include="src\textures\wall.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="src\shaders\skybox.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -24,6 +24,14 @@
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
+void DeltaTime(Window& window)
+{
+    float currentFrame = static_cast<float>(glfwGetTime());
+    deltaTime = currentFrame - lastFrame;
+    lastFrame = currentFrame;
+    window.ProcessInput(deltaTime);
+}
+
 int main()
 {
     Window window;
@@ -45,13 +53,7 @@ int main()
 
     while(!glfwWindowShouldClose(window.GetGLFWwindow()))
     {
-        {
-            float currentFrame = static_cast<float>(glfwGetTime());
-            deltaTime = currentFrame - lastFrame;
-            lastFrame = currentFrame;
-            window.ProcessInput(deltaTime);
-        }
-
+        DeltaTime(window);
         
         // configure transformation matrices
         g_Projection = glm::perspective(glm::radians(45.0f), (float)window.GetWidth() / (float)window.GetHeight(), 0.1f, 1000.0f);
