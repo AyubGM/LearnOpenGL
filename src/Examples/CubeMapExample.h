@@ -15,7 +15,7 @@ public:
 
 
 	void Run(const glm::mat4& view, const glm::mat4& projection) override;
-	void Exercise(glm::mat4& view, glm::mat4& projection, Camera camera);
+	void Reflection(glm::mat4& view, glm::mat4& projection, Camera camera);
 
 
 private:
@@ -27,9 +27,13 @@ private:
 
 	Shader m_Shader;
 	Shader m_SkyboxShader;
+	Shader m_ReflectiveShader;
 
 	VertexArray m_CubeVAO;
 	VertexBuffer m_CubeVB;
+
+	VertexArray m_ReflectiveCubeVAO;
+	VertexBuffer m_ReflectiveCubeVB;
 
 	VertexArray m_SkyboxVAO;
 	VertexBuffer m_SkyboxVB;

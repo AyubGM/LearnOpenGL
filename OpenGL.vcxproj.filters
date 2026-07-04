@@ -61,6 +61,8 @@
     <None Include="src\Shaders\CubeMap\6.1.cubemaps.frag" />
     <None Include="src\Shaders\CubeMap\6.1.skybox.vert" />
     <None Include="src\Shaders\CubeMap\6.1.skybox.frag" />
+    <None Include="src\Shaders\CubeMap\6.2.cubemaps.frag" />
+    <None Include="src\Shaders\CubeMap\6.2.cubemaps.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">

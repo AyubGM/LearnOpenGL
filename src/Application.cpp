@@ -64,7 +64,8 @@ int main()
 
         //frameBufferExample.Run(g_View, g_Projection);
         //frameBufferExample.Exercise(g_View, g_Projection, camera);
-        cubeMapExample.Run(g_View, g_Projection);
+        //cubeMapExample.Run(g_View, g_Projection);
+        cubeMapExample.Reflection(g_View, g_Projection, camera);
 
    
         window.OnUpdate();

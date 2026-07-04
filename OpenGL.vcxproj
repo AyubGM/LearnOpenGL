@@ -153,6 +153,8 @@
     <None Include="src\Shaders\CubeMap\6.1.cubemaps.vert" />
     <None Include="src\Shaders\CubeMap\6.1.skybox.frag" />
     <None Include="src\Shaders\CubeMap\6.1.skybox.vert" />
+    <None Include="src\Shaders\CubeMap\6.2.cubemaps.frag" />
+    <None Include="src\Shaders\CubeMap\6.2.cubemaps.vert" />
     <None Include="src\Shaders\FrameBuffer\5.1.framebuffers.frag" />
     <None Include="src\Shaders\FrameBuffer\5.1.framebuffers.vert" />
     <None Include="src\Shaders\FrameBuffer\5.1.framebuffers_screen.frag" />
