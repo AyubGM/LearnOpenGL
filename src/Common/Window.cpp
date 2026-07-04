@@ -86,6 +86,27 @@ void Window::OnCursorPos(double xpos, double ypos)
     lastX = xpos;
     lastY = ypos;
 
+    if (m_WrapCursor)
+    {
+        if (xpos <= 0) {
+            glfwSetCursorPos(m_Window, m_Width - 2, ypos);
+            lastX = m_Width - 2;
+        }
+        else if (xpos >= m_Width - 1) {
+            glfwSetCursorPos(m_Window, 1, ypos);
+            lastX = 1;
+        }
+
+        if (ypos <= 0) {
+            glfwSetCursorPos(m_Window, xpos, m_Height - 2);
+            lastY = m_Height - 2;
+        }
+        else if (ypos >= m_Height - 1) {
+            glfwSetCursorPos(m_Window, xpos, 1);
+            lastY = 1;
+        }
+    }
+
     m_Camera.ProcessMouseMovement(static_cast<float>(xoffset), static_cast<float>(yoffset));
 }
 
@@ -110,6 +131,18 @@ void Window::ProcessInput(float deltaTime)
     if (glfwGetKey(m_Window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(m_Window, true);
 
+    if (glfwGetKey(m_Window, GLFW_KEY_TAB) == GLFW_PRESS)
+        m_WrapCursor = !m_WrapCursor;
+
+    if (glfwGetKey(m_Window, GLFW_KEY_F) == GLFW_PRESS && !m_FocusMode) {
+        glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+        m_FocusMode = true;
+    }
+    else if (glfwGetKey(m_Window, GLFW_KEY_F) == GLFW_RELEASE && m_FocusMode) {
+        glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+        m_FocusMode = false;
+    }
+
     if (glfwGetKey(m_Window, GLFW_KEY_W) == GLFW_PRESS)
         m_Camera.ProcessKeyboard(CameraMovement::FORWARD, deltaTime);
     if (glfwGetKey(m_Window, GLFW_KEY_S) == GLFW_PRESS)
@@ -122,5 +155,7 @@ void Window::ProcessInput(float deltaTime)
         m_Camera.ProcessKeyboard(CameraMovement::Jump, deltaTime);
     if (glfwGetKey(m_Window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
         m_Camera.ProcessKeyboard(CameraMovement::Down, deltaTime);
+    
+    
 }
 

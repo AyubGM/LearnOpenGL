@@ -34,6 +34,8 @@ private:
 
 	Camera m_Camera;
 	bool m_FirstMove;
+	bool m_WrapCursor = false;
+	bool m_FocusMode = false;
 	
 
 };
