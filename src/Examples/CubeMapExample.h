@@ -26,13 +26,17 @@ private:
 private:
 
 	Shader m_Shader;
+	Shader m_SkyboxShader;
 
 	VertexArray m_CubeVAO;
 	VertexBuffer m_CubeVB;
 
+	VertexArray m_SkyboxVAO;
+	VertexBuffer m_SkyboxVB;
+
 
 	uint32_t m_CubeTexture;
-	uint32_t m_CubeMapTexture;
+	uint32_t m_SkyboxTexture;
 
 
 };

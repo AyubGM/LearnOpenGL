@@ -2,73 +2,6 @@
 #include "../TextureLoader.h"
 
 
-float cubeVertices[] = {
-    // positions          // texture Coords
-    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-     0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-
-    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-    -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-};
-float planeVertices[] = {
-    // positions          // texture Coords (note we set these higher than 1 (together with GL_REPEAT as texture wrapping mode). this will cause the floor texture to repeat)
-     5.0f, -0.5f,  5.0f,  2.0f, 0.0f,
-    -5.0f, -0.5f, -5.0f,  0.0f, 2.0f,
-    -5.0f, -0.5f,  5.0f,  0.0f, 0.0f,
-
-
-     5.0f, -0.5f,  5.0f,  2.0f, 0.0f,
-     5.0f, -0.5f, -5.0f,  2.0f, 2.0f,
-    -5.0f, -0.5f, -5.0f,  0.0f, 2.0f
-
-};
-
-float quadVertices[] = {
-    // positions   // texCoords
-        -0.3f,  1.0f,  0.0f, 1.0f,
-        -0.3f,  0.7f,  0.0f, 0.0f,
-         0.3f,  0.7f,  1.0f, 0.0f,
-
-        -0.3f,  1.0f,  0.0f, 1.0f,
-         0.3f,  0.7f,  1.0f, 0.0f,
-         0.3f,  1.0f,  1.0f, 1.0f
-};
 
 FrameBufferExample::FrameBufferExample() : 
 m_Shader("src/shaders/FrameBuffer/5.1.framebuffers.vert", "src/shaders/FrameBuffer/5.1.framebuffers.frag"),
@@ -91,6 +24,75 @@ void FrameBufferExample::SetUpTextures()
 
 void FrameBufferExample::SetUpBuffers()
 {
+    float cubeVertices[] = {
+        // positions          // texture Coords
+        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+         0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+         0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+         0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+
+        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+         0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+         0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+         0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+         0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+    };
+    float planeVertices[] = {
+        // positions          // texture Coords (note we set these higher than 1 (together with GL_REPEAT as texture wrapping mode). this will cause the floor texture to repeat)
+         5.0f, -0.5f,  5.0f,  2.0f, 0.0f,
+        -5.0f, -0.5f, -5.0f,  0.0f, 2.0f,
+        -5.0f, -0.5f,  5.0f,  0.0f, 0.0f,
+
+
+         5.0f, -0.5f,  5.0f,  2.0f, 0.0f,
+         5.0f, -0.5f, -5.0f,  2.0f, 2.0f,
+        -5.0f, -0.5f, -5.0f,  0.0f, 2.0f
+
+    };
+
+    float quadVertices[] = {
+        // positions   // texCoords
+            -0.3f,  1.0f,  0.0f, 1.0f,
+            -0.3f,  0.7f,  0.0f, 0.0f,
+             0.3f,  0.7f,  1.0f, 0.0f,
+
+            -0.3f,  1.0f,  0.0f, 1.0f,
+             0.3f,  0.7f,  1.0f, 0.0f,
+             0.3f,  1.0f,  1.0f, 1.0f
+    };
+
+
     m_CubeVB.SetData(cubeVertices, sizeof(cubeVertices));
     m_CubeVB.SetLayout({
     { ShaderDataType::Float3, "aPos" },

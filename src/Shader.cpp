@@ -33,14 +33,14 @@ std::string get_file_contents(const char* filename) {
 		vertexShader = glCreateShader(GL_VERTEX_SHADER);
 		glShaderSource(vertexShader, 1, &vertexSource, NULL);
 		glCompileShader(vertexShader);
-		checkCompileErrors(vertexShader, "VERTEX");
+		checkCompileErrors(vertexShader, "VERTEX", vertexFile);
 
 		//creating the fragment shader AKA the color shader
 		unsigned int fragmentShader;
 		fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 		glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
 		glCompileShader(fragmentShader);
-		checkCompileErrors(fragmentShader, "FRAGMENT");
+		checkCompileErrors(fragmentShader, "FRAGMENT", fragmentFile);
 	
 
 
@@ -51,7 +51,7 @@ std::string get_file_contents(const char* filename) {
 		glAttachShader(ID, vertexShader);
 		glAttachShader(ID, fragmentShader);
 		glLinkProgram(ID);
-		checkCompileErrors(ID, "PROGRAM");
+		checkCompileErrors(ID, "PROGRAM", "Shader Linker");
 
 		glDeleteShader(vertexShader);
 		glDeleteShader(fragmentShader);
@@ -72,21 +72,21 @@ std::string get_file_contents(const char* filename) {
 		vertexShader = glCreateShader(GL_VERTEX_SHADER);
 		glShaderSource(vertexShader, 1, &vertexSource, NULL);
 		glCompileShader(vertexShader);
-		checkCompileErrors(vertexShader, "VERTEX");
+		checkCompileErrors(vertexShader, "VERTEX", vertexFile);
 
 		//creating the fragment shader AKA the color shader
 		unsigned int fragmentShader;
 		fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 		glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
 		glCompileShader(fragmentShader);
-		checkCompileErrors(fragmentShader, "FRAGMENT");
+		checkCompileErrors(fragmentShader, "FRAGMENT", fragmentFile);
 
 		//creating the geometry shader 
 		unsigned int geometryShader;
 		geometryShader = glCreateShader(GL_GEOMETRY_SHADER);
 		glShaderSource(geometryShader, 1, &geometrySource, NULL);
 		glCompileShader(geometryShader);
-		checkCompileErrors(geometryShader, "GEOMETRY");
+		checkCompileErrors(geometryShader, "GEOMETRY", geometryPath);
 
 
 
@@ -98,7 +98,7 @@ std::string get_file_contents(const char* filename) {
 		glAttachShader(ID, fragmentShader);
 		glAttachShader(ID, geometryShader);
 		glLinkProgram(ID);
-		checkCompileErrors(ID, "PROGRAM");
+		checkCompileErrors(ID, "PROGRAM", "Shader Linker");
 
 		glDeleteShader(vertexShader);
 		glDeleteShader(fragmentShader);
@@ -146,7 +146,7 @@ std::string get_file_contents(const char* filename) {
 		glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()),1,GL_FALSE, glm::value_ptr(value));
 	}
 
-	void Shader::checkCompileErrors(unsigned int shader, std::string type)
+	void Shader::checkCompileErrors(unsigned int shader, std::string type, const char* filePath)
 	{
 		int success;
 		char infoLog[1024];
@@ -156,7 +156,8 @@ std::string get_file_contents(const char* filename) {
 			if (!success)
 			{
 				glGetShaderInfoLog(shader, 1024, NULL, infoLog);
-				std::cout << "ERROR::SHADER_COMPILATION_ERROR of type: " << type << "\n" << infoLog << "\n -- --------------------------------------------------- -- " << std::endl;
+				std::cout << "ERROR::SHADER_COMPILATION_ERROR of type: " << type << "\n" << "File Path: " << filePath << "\n"
+					<< infoLog << "\n -- --------------------------------------------------- -- " << std::endl;
 			}
 		}
 		else
@@ -165,7 +166,8 @@ std::string get_file_contents(const char* filename) {
 			if (!success)
 			{
 				glGetProgramInfoLog(shader, 1024, NULL, infoLog);
-				std::cout << "ERROR::PROGRAM_LINKING_ERROR of type: " << type << "\n" << infoLog << "\n -- --------------------------------------------------- -- " << std::endl;
+				std::cout << "ERROR::PROGRAM_LINKING_ERROR of type: " << type << "\n" << "File Path: " << filePath << "\n"
+					<< infoLog << "\n -- --------------------------------------------------- -- " << std::endl;
 			}
 		}
 	};
