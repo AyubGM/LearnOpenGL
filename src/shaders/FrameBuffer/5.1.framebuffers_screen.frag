@@ -21,10 +21,10 @@ vec2 offsets[9] = vec2[](
     );
 
       float kernel[9] = float[](
-        -1, -1, -1,
-        -1,  9, -1,
-        -1, -1, -1
-    );
+    1.0 / 16, 2.0 / 16, 1.0 / 16,
+    2.0 / 16, 4.0 / 16, 2.0 / 16,
+    1.0 / 16, 2.0 / 16, 1.0 / 16  
+);
 
     vec3 sampleTex[9]; // the sourrounding pixels
     for(int i = 0; i < 9; i++)
