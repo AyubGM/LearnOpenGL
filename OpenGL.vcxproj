@@ -137,11 +137,13 @@
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\Buffers\FrameBuffer.cpp" />
+    <ClCompile Include="src\Buffers\UniformBuffer.cpp" />
     <ClCompile Include="src\Common\Window.cpp" />
     <ClCompile Include="src\Buffers\IndexBuffer.cpp" />
     <ClCompile Include="External\glad.c" />
     <ClCompile Include="src\Examples\CubeMapExample.cpp" />
     <ClCompile Include="src\Examples\FrameBufferExample.cpp" />
+    <ClCompile Include="src\Examples\UniformBufferExample.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="External\stb_image.cpp" />
     <ClCompile Include="src\Buffers\VertexArray.cpp" />
@@ -159,16 +161,23 @@
     <None Include="src\Shaders\FrameBuffer\5.1.framebuffers.vert" />
     <None Include="src\Shaders\FrameBuffer\5.1.framebuffers_screen.frag" />
     <None Include="src\Shaders\FrameBuffer\5.1.framebuffers_screen.vert" />
+    <None Include="src\Shaders\UnifomBuffer\8.advanced_glsl.vert" />
+    <None Include="src\Shaders\UnifomBuffer\8.blue.frag" />
+    <None Include="src\Shaders\UnifomBuffer\8.green.frag" />
+    <None Include="src\Shaders\UnifomBuffer\8.red.frag" />
+    <None Include="src\Shaders\UnifomBuffer\8.yellow.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\assimp\include\config.h" />
     <ClInclude Include="include\assimp\include\revision.h" />
     <ClInclude Include="include\stb_image.h" />
     <ClInclude Include="src\Buffers\FrameBuffer.h" />
+    <ClInclude Include="src\Buffers\UniformBuffer.h" />
     <ClInclude Include="src\Common\Window.h" />
     <ClInclude Include="src\Examples\CubeMapExample.h" />
     <ClInclude Include="src\Examples\IExample.h" />
     <ClInclude Include="src\Examples\FrameBufferExample.h" />
+    <ClInclude Include="src\Examples\UniformBufferExample.h" />
     <ClInclude Include="src\Mesh.h" />
     <ClInclude Include="src\Buffers\IndexBuffer.h" />
     <ClInclude Include="src\Camera.h" />

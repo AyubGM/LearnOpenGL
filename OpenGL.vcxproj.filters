@@ -51,6 +51,12 @@
     <ClCompile Include="src\Examples\CubeMapExample.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Buffers\UniformBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\UniformBufferExample.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Shaders\FrameBuffer\5.1.framebuffers.vert" />
@@ -63,6 +69,11 @@
     <None Include="src\Shaders\CubeMap\6.1.skybox.frag" />
     <None Include="src\Shaders\CubeMap\6.2.cubemaps.frag" />
     <None Include="src\Shaders\CubeMap\6.2.cubemaps.vert" />
+    <None Include="src\Shaders\UnifomBuffer\8.advanced_glsl.vert" />
+    <None Include="src\Shaders\UnifomBuffer\8.red.frag" />
+    <None Include="src\Shaders\UnifomBuffer\8.green.frag" />
+    <None Include="src\Shaders\UnifomBuffer\8.blue.frag" />
+    <None Include="src\Shaders\UnifomBuffer\8.yellow.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -111,6 +122,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Examples\CubeMapExample.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Buffers\UniformBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\UniformBufferExample.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
