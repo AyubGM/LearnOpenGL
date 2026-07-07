@@ -20,6 +20,7 @@
 #include "Buffers/VertexArray.h"
 #include "Examples/FrameBufferExample.h"
 #include "Examples/CubeMapExample.h"
+#include "Examples/UniformBufferExample.h"
 
 // timing
 float deltaTime = 0.0f;
@@ -51,7 +52,9 @@ int main()
     glm::mat4 g_View = camera.GetViewMatrix();
 
     //FrameBufferExample frameBufferExample;
-    CubeMapExample cubeMapExample;
+    //CubeMapExample cubeMapExample;
+    UniformBufferExample UniformBufferExample;
+
 
 
     while(!glfwWindowShouldClose(window.GetGLFWwindow()))
@@ -65,7 +68,8 @@ int main()
         //frameBufferExample.Run(g_View, g_Projection);
         //frameBufferExample.Exercise(g_View, g_Projection, camera);
         //cubeMapExample.Run(g_View, g_Projection);
-        cubeMapExample.Reflection(g_View, g_Projection, camera);
+        //cubeMapExample.Reflection(g_View, g_Projection, camera);
+        UniformBufferExample.Run(g_View, g_Projection);
 
    
         window.OnUpdate();
