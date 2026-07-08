@@ -20,11 +20,11 @@ namespace Utils
             win->OnCursorPos(xposIn, yposIn);
     }
 
-    static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+    static void scroll_callback(GLFWwindow* window, double xOffset, double yOffset)
     {
         Window* win = static_cast<Window*>(glfwGetWindowUserPointer(window));
         if (win)
-            win->OnScroll(yoffset);
+            win->OnScroll(yOffset);
     }
 
 }

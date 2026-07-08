@@ -143,6 +143,7 @@
     <ClCompile Include="External\glad.c" />
     <ClCompile Include="src\Examples\CubeMapExample.cpp" />
     <ClCompile Include="src\Examples\FrameBufferExample.cpp" />
+    <ClCompile Include="src\Examples\GeometryShaderExample.cpp" />
     <ClCompile Include="src\Examples\UniformBufferExample.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="External\stb_image.cpp" />
@@ -161,6 +162,9 @@
     <None Include="src\Shaders\FrameBuffer\5.1.framebuffers.vert" />
     <None Include="src\Shaders\FrameBuffer\5.1.framebuffers_screen.frag" />
     <None Include="src\Shaders\FrameBuffer\5.1.framebuffers_screen.vert" />
+    <None Include="src\Shaders\GeometryShader\9.2.geometry_shader.frag" />
+    <None Include="src\Shaders\GeometryShader\9.2.geometry_shader.geom" />
+    <None Include="src\Shaders\GeometryShader\9.2.geometry_shader.vert" />
     <None Include="src\Shaders\UnifomBuffer\8.advanced_glsl.vert" />
     <None Include="src\Shaders\UnifomBuffer\8.blue.frag" />
     <None Include="src\Shaders\UnifomBuffer\8.green.frag" />
@@ -175,6 +179,7 @@
     <ClInclude Include="src\Buffers\UniformBuffer.h" />
     <ClInclude Include="src\Common\Window.h" />
     <ClInclude Include="src\Examples\CubeMapExample.h" />
+    <ClInclude Include="src\Examples\GeometryShaderExample.h" />
     <ClInclude Include="src\Examples\IExample.h" />
     <ClInclude Include="src\Examples\FrameBufferExample.h" />
     <ClInclude Include="src\Examples\UniformBufferExample.h" />

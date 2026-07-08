@@ -10,17 +10,13 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "Camera.h"
-#include "Model.h"
-#include "Shader.h"
+
 
 #include <iostream>
-#include <map>
-#include "Buffers/FrameBuffer.h"
-#include "TextureLoader.h"
-#include "Buffers/VertexArray.h"
 #include "Examples/FrameBufferExample.h"
 #include "Examples/CubeMapExample.h"
 #include "Examples/UniformBufferExample.h"
+#include "Examples/GeometryShaderExample.h"
 
 // timing
 float deltaTime = 0.0f;
@@ -53,7 +49,8 @@ int main()
 
     //FrameBufferExample frameBufferExample;
     //CubeMapExample cubeMapExample;
-    UniformBufferExample UniformBufferExample;
+    //UniformBufferExample UniformBufferExample;
+    GeometryShaderExample geometryShaderExample;
 
 
 
@@ -69,7 +66,8 @@ int main()
         //frameBufferExample.Exercise(g_View, g_Projection, camera);
         //cubeMapExample.Run(g_View, g_Projection);
         //cubeMapExample.Reflection(g_View, g_Projection, camera);
-        UniformBufferExample.Run(g_View, g_Projection);
+        //UniformBufferExample.Run(g_View, g_Projection);
+        geometryShaderExample.Run(g_View, g_Projection);
 
    
         window.OnUpdate();
