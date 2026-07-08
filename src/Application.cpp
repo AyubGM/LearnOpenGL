@@ -67,7 +67,8 @@ int main()
         //cubeMapExample.Run(g_View, g_Projection);
         //cubeMapExample.Reflection(g_View, g_Projection, camera);
         //UniformBufferExample.Run(g_View, g_Projection);
-        geometryShaderExample.Run(g_View, g_Projection);
+        //geometryShaderExample.Run(g_View, g_Projection);
+        geometryShaderExample.VisualizeNormals(g_View, g_Projection);
 
    
         window.OnUpdate();

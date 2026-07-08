@@ -13,6 +13,7 @@ public:
 	~GeometryShaderExample();
 
 	void Run(const glm::mat4& view, const glm::mat4& projection) override;
+	void VisualizeNormals(const glm::mat4& view, const glm::mat4& projection);
 
 private:
 	void SetUpTextures() override;
@@ -20,8 +21,10 @@ private:
 	void SetUpShaders() override;
 
 private:
-
+	Shader m_ExplodeShader;
 	Shader m_Shader;
+	Shader m_NormalShader;
+
 	Model m_BackPack;
 
 

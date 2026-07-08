@@ -80,6 +80,11 @@
     <None Include="src\Shaders\GeometryShader\9.2.geometry_shader.vert" />
     <None Include="src\Shaders\GeometryShader\9.2.geometry_shader.frag" />
     <None Include="src\Shaders\GeometryShader\9.2.geometry_shader.geom" />
+    <None Include="src\Shaders\GeometryShader\9.3.default.vert" />
+    <None Include="src\Shaders\GeometryShader\9.3.default.frag" />
+    <None Include="src\Shaders\GeometryShader\9.3.normal_visualization.vert" />
+    <None Include="src\Shaders\GeometryShader\9.3.normal_visualization.frag" />
+    <None Include="src\Shaders\GeometryShader\9.3.normal_visualization.geom" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
