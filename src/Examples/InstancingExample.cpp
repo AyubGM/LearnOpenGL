@@ -22,7 +22,7 @@ void InstancingExample::Run(const glm::mat4& view, const glm::mat4& projection)
 
     
 
-    m_PlanetShader.use();
+    m_PlanetShader.Bind();
     m_PlanetShader.setMat4("projection", projection);
     m_PlanetShader.setMat4("view", view);
 
@@ -33,7 +33,7 @@ void InstancingExample::Run(const glm::mat4& view, const glm::mat4& projection)
 
     m_PlanetModel.Draw(m_PlanetShader);
 
-    m_AsteroidShader.use();
+    m_AsteroidShader.Bind();
     m_AsteroidShader.setMat4("projection", projection);
     m_AsteroidShader.setMat4("view", view);
 

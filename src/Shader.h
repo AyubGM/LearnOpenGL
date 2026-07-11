@@ -1,30 +1,30 @@
-#ifndef SHADER_H
-#define SHADER_H
+#pragma once
 
 #include <glad/glad.h>
+
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <iostream>
 #include <cerrno>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+#include <unordered_map>
+
 std::string get_file_contents(const char* filename);
 
 class Shader
 {
 public:
-    unsigned int ID;
-    // constructor generates the shader on the fly
-    // ------------------------------------------------------------------------
+    
     Shader(const char* vertexPath, const char* fragmentPath);
     Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath);
-    // activate the shader
-    // ------------------------------------------------------------------------
-    void use();
-    void dele();
+    ~Shader();
+    void Bind() const;
+    void UnBind() const;
+    void Delete();
 
 	// utility uniform functions
     void setBool(const std::string& name, bool value) const;
@@ -39,5 +39,12 @@ private:
     // ------------------------------------------------------------------------
    
     void checkCompileErrors(unsigned int shader, std::string type, const char* filePath);
+    void ReflectActiveUniforms();
+    int GetUniformLocation(const std::string& name) const;
+
+private:
+    uint32_t m_ID;
+    std::string m_Name;
+
+    mutable std::unordered_map<std::string, int> m_UniformLocationCache;
 };
-#endif

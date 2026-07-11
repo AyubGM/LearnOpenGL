@@ -27,7 +27,7 @@ void GeometryShaderExample::Run(const glm::mat4& view, const glm::mat4& projecti
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glm::mat4 model = glm::mat4(1.0f);
-	m_ExplodeShader.use();
+	m_ExplodeShader.Bind();
 	m_ExplodeShader.setMat4("projection", projection);
 	m_ExplodeShader.setMat4("view", view);
 	m_ExplodeShader.setMat4("model", model);
@@ -41,14 +41,14 @@ void GeometryShaderExample::VisualizeNormals(const glm::mat4& view, const glm::m
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glm::mat4 model = glm::mat4(1.0f);
-	m_Shader.use();
+	m_Shader.Bind();
 	m_Shader.setMat4("projection", projection);
 	m_Shader.setMat4("view", view);
 	m_Shader.setMat4("model", model);
 
 	m_BackPack.Draw(m_Shader);
 
-	m_NormalShader.use();
+	m_NormalShader.Bind();
 	m_NormalShader.setMat4("projection", projection);
 	m_NormalShader.setMat4("view", view);
 	m_NormalShader.setMat4("model", model);

@@ -194,13 +194,13 @@ void CubeMapExample::SetUpBuffers()
 
 void CubeMapExample::SetUpShaders()
 {
-    m_Shader.use();
+    m_Shader.Bind();
     m_Shader.setInt("texture1", 0);
 
-    m_SkyboxShader.use();
+    m_SkyboxShader.Bind();
     m_SkyboxShader.setInt("skybox", 0);
 
-    m_ReflectiveShader.use();
+    m_ReflectiveShader.Bind();
     m_ReflectiveShader.setInt("skybox", 0);
 }
 
@@ -209,7 +209,7 @@ void CubeMapExample::Run(const glm::mat4& view, const glm::mat4& projection)
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    m_Shader.use();
+    m_Shader.Bind();
     glm::mat4 model = glm::mat4(1.0f);
     m_Shader.setMat4("model", model);
     m_Shader.setMat4("view", view);
@@ -223,7 +223,7 @@ void CubeMapExample::Run(const glm::mat4& view, const glm::mat4& projection)
 
     // draw skybox as last
     glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content
-    m_SkyboxShader.use();
+    m_SkyboxShader.Bind();
     glm::mat4 noTranslationViewMat = glm::mat4(glm::mat3(view));    // remove translation from the view matrix
     m_SkyboxShader.setMat4("view", noTranslationViewMat);
     m_SkyboxShader.setMat4("projection", projection);
@@ -239,7 +239,7 @@ void CubeMapExample::Reflection(glm::mat4& view, glm::mat4& projection, Camera c
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    m_ReflectiveShader.use();
+    m_ReflectiveShader.Bind();
     glm::mat4 model = glm::mat4(1.0f);
     m_ReflectiveShader.setMat4("model", model);
     m_ReflectiveShader.setMat4("view", view);
@@ -254,7 +254,7 @@ void CubeMapExample::Reflection(glm::mat4& view, glm::mat4& projection, Camera c
 
     // draw skybox as last
     glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content
-    m_SkyboxShader.use();
+    m_SkyboxShader.Bind();
     glm::mat4 noTranslationViewMat = glm::mat4(glm::mat3(view));    // remove translation from the view matrix
     m_SkyboxShader.setMat4("view", noTranslationViewMat);
     m_SkyboxShader.setMat4("projection", projection);

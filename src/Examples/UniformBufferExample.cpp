@@ -27,30 +27,30 @@ void UniformBufferExample::Run(const glm::mat4& view, const glm::mat4& projectio
 	m_UboMatrices.SetData(sizeof(projection), sizeof(view), &view);
 
     m_CubeVAO.Bind();
-    m_ShaderRed.use();
+    m_ShaderRed.Bind();
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(-0.75f, 0.75f, 0.0f));
     m_ShaderRed.setMat4("model", model);
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
-    m_ShaderGreen.use();
+    m_ShaderGreen.Bind();
     model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(0.75f, 0.75f, 0.0f)); // move top-right
     m_ShaderGreen.setMat4("model", model);
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
-    m_ShaderYellow.use();
+    m_ShaderYellow.Bind();
     model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(-0.75f, -0.75f, 0.0f)); // move bottom-left
     m_ShaderYellow.setMat4("model", model);
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
-    m_ShaderBlue.use();
+    m_ShaderBlue.Bind();
     model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(0.75f, -0.75f, 0.0f)); // move bottom-right
     m_ShaderBlue.setMat4("model", model);
     glDrawArrays(GL_TRIANGLES, 0, 36);
-    m_ShaderYellow.use();
+    m_ShaderYellow.Bind();
 }
 
 void UniformBufferExample::SetUpTextures()

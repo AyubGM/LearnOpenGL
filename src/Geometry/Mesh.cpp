@@ -33,7 +33,7 @@ void Mesh::Draw(Shader& shader) const
         else if (name == "texture_height")
             number = std::to_string(heightNr++);
 
-        glUniform1i(glGetUniformLocation(shader.ID, (name + number).c_str()), i);
+        shader.setInt(name + number, i);
         m_Textures[i]->Bind(i);
     }
 
@@ -61,7 +61,7 @@ void Mesh::DrawInstanced(Shader& shader, uint32_t instanceCount) const
         else if (name == "texture_normal") number = std::to_string(normalNr++);
         else if (name == "texture_height") number = std::to_string(heightNr++);
 
-        glUniform1i(glGetUniformLocation(shader.ID, (name + number).c_str()), i);
+        shader.setInt(name + number, i);
         m_Textures[i]->Bind(i);
     }
 

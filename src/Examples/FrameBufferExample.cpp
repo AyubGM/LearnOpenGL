@@ -121,10 +121,10 @@ void FrameBufferExample::SetUpBuffers()
 
 void FrameBufferExample::SetUpShaders()
 {
-    m_Shader.use();
+    m_Shader.Bind();
     m_Shader.setInt("texture1", 0);
 
-    m_ScreenShader.use();
+    m_ScreenShader.Bind();
     m_ScreenShader.setInt("screenTexture", 0);
 }
 
@@ -135,7 +135,7 @@ void FrameBufferExample::Run(const glm::mat4& view, const glm::mat4& projection)
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    m_Shader.use();
+    m_Shader.Bind();
     m_Shader.setMat4("view", view);
     m_Shader.setMat4("projection", projection);
 
@@ -164,7 +164,7 @@ void FrameBufferExample::Run(const glm::mat4& view, const glm::mat4& projection)
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // Not needed
     glClear(GL_COLOR_BUFFER_BIT);
 
-    m_ScreenShader.use();
+    m_ScreenShader.Bind();
     m_QuadVAO.Bind();
     glBindTexture(GL_TEXTURE_2D, m_FrameBuffer.GetTextureColorBuffer());
     glDrawArrays(GL_TRIANGLES, 0, 6);
@@ -178,7 +178,7 @@ void FrameBufferExample::Exercise(glm::mat4& view, glm::mat4& projection, Camera
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    m_Shader.use();
+    m_Shader.Bind();
     
     glm::mat4 model = glm::mat4(1.0f);
     camera.Yaw += 180.0f; // rotate the camera's yaw 180 degrees around
@@ -241,7 +241,7 @@ void FrameBufferExample::Exercise(glm::mat4& view, glm::mat4& projection, Camera
 
     // now draw the mirror quad with screen texture
     glDisable(GL_DEPTH_TEST);
-    m_ScreenShader.use();
+    m_ScreenShader.Bind();
     m_QuadVAO.Bind();
     glBindTexture(GL_TEXTURE_2D, m_FrameBuffer.GetTextureColorBuffer());
     glDrawArrays(GL_TRIANGLES, 0, 6);
