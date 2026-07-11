@@ -3,17 +3,51 @@
 #include <cassert>
 
 
-VertexBuffer::VertexBuffer(float* vertices, uint32_t size)
+VertexBuffer::VertexBuffer(const void* vertices, uint32_t size)
 {
 	SetData(vertices, size);
 }
 
-void VertexBuffer::SetData(float* vertices, uint32_t size)
+VertexBuffer::~VertexBuffer() {
+	Delete();
+}
+
+VertexBuffer::VertexBuffer(VertexBuffer&& other) noexcept
+	: m_ID(other.m_ID), m_Layout(std::move(other.m_Layout)), m_Initialized(other.m_Initialized)
 {
-	glGenBuffers(1, &m_ID);
-	glBindBuffer(GL_ARRAY_BUFFER, m_ID);
-	glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW);
-	m_Initialized = true;
+	other.m_ID = 0;
+	other.m_Initialized = false;
+}
+
+VertexBuffer& VertexBuffer::operator=(VertexBuffer&& other) noexcept
+{
+	if (this != &other)
+	{
+		Delete(); // Clean up current resources before taking ownership
+		m_ID = other.m_ID;
+		m_Layout = std::move(other.m_Layout);
+		m_Initialized = other.m_Initialized;
+
+		other.m_ID = 0;
+		other.m_Initialized = false;
+	}
+	return *this;
+}
+
+void VertexBuffer::SetData(const void* vertices, uint32_t size)
+{
+	if (!m_Initialized)
+	{
+		// OpenGL 4.5+ Direct State Access
+		glCreateBuffers(1, &m_ID);
+		glNamedBufferData(m_ID, size, vertices, GL_STATIC_DRAW);
+		m_Initialized = true;
+	}
+	else
+	{
+		// If already created, just update the data (avoids memory leak)
+		glNamedBufferSubData(m_ID, 0, size, vertices);
+	}
 }
 
 void VertexBuffer::Bind() const
@@ -29,6 +63,11 @@ void VertexBuffer::UnBind() const
 
 void VertexBuffer::Delete()
 {
-	glDeleteBuffers(1, &m_ID);
+	if (m_ID)
+	{
+		glDeleteBuffers(1, &m_ID);
+		m_ID = 0;
+		m_Initialized = false;
+	}
 }
 

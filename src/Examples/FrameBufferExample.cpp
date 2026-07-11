@@ -18,8 +18,8 @@ FrameBufferExample::~FrameBufferExample()
 
 void FrameBufferExample::SetUpTextures()
 {
-	 m_CubeTexture = TextureLoader::LoadTexture("src/textures/container.jpg");
-	 m_FloorTexture = TextureLoader::LoadTexture("src/textures/metal.png");
+	 m_CubeTexture = TextureLoader::LoadTexture("src/Resources/textures/container.jpg");
+	 m_FloorTexture = TextureLoader::LoadTexture("src/Resources/textures/metal.png");
 }
 
 void FrameBufferExample::SetUpBuffers()

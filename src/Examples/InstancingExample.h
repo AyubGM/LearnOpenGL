@@ -5,15 +5,13 @@
 #include "../Buffers/VertexBuffer.h"
 #include "../Geometry/Model.h"
 
-
-class GeometryShaderExample : public IExample
+class InstancingExample : public IExample
 {
 public:
-	GeometryShaderExample();
-	~GeometryShaderExample();
+	InstancingExample(uint32_t amount = 10000);
+	~InstancingExample();
 
 	void Run(const glm::mat4& view, const glm::mat4& projection) override;
-	void VisualizeNormals(const glm::mat4& view, const glm::mat4& projection);
 
 private:
 	void SetUpTextures() override;
@@ -21,12 +19,13 @@ private:
 	void SetUpShaders() override;
 
 private:
-	Shader m_ExplodeShader;
-	Shader m_Shader;
-	Shader m_NormalShader;
+	Shader m_AsteroidShader;
+	Shader m_PlanetShader;
+	Model m_RockModel;
+	Model m_PlanetModel;
 
-	Model m_BackPack;
+	VertexBuffer m_InstancedVBO;
+	uint32_t m_Amount;
 
 
 };
-

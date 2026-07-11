@@ -60,6 +60,18 @@
     <ClCompile Include="src\Examples\GeometryShaderExample.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Examples\InstancingExample.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Geometry\Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Geometry\Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Texture\Texture2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Shaders\FrameBuffer\5.1.framebuffers.vert" />
@@ -85,6 +97,10 @@
     <None Include="src\Shaders\GeometryShader\9.3.normal_visualization.vert" />
     <None Include="src\Shaders\GeometryShader\9.3.normal_visualization.frag" />
     <None Include="src\Shaders\GeometryShader\9.3.normal_visualization.geom" />
+    <None Include="src\Shaders\Instancing\10.3.asteroids.vert" />
+    <None Include="src\Shaders\Instancing\10.3.asteroids.frag" />
+    <None Include="src\Shaders\Instancing\10.3.planet.vert" />
+    <None Include="src\Shaders\Instancing\10.3.planet.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -105,10 +121,10 @@
     <ClInclude Include="src\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Mesh.h">
+    <ClInclude Include="src\Geometry\Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Model.h">
+    <ClInclude Include="src\Geometry\Model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\assimp\include\config.h">
@@ -144,51 +160,60 @@
     <ClInclude Include="src\Examples\GeometryShaderExample.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Examples\InstancingExample.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Buffers\BufferLayout.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Texture\Texture2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="src\Textures\awesomeface.png">
+    <Image Include="src\Resources\Textures\awesomeface.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="src\Textures\wall.jpg">
+    <Image Include="src\Resources\Textures\wall.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="src\Textures\container2.png">
+    <Image Include="src\Resources\Textures\container2.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="src\Textures\container2_specular.png">
+    <Image Include="src\Resources\Textures\container2_specular.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="src\Textures\marble.jpg">
+    <Image Include="src\Resources\Textures\marble.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="src\Textures\metal.png">
+    <Image Include="src\Resources\Textures\metal.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="src\Textures\transparentWindow.png">
+    <Image Include="src\Resources\Textures\transparentWindow.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="src\Textures\grass.png">
+    <Image Include="src\Resources\Textures\grass.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="src\Textures\container.jpg">
+    <Image Include="src\Resources\Textures\container.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="src\Textures\skybox\back.jpg">
+    <Image Include="src\Resources\Textures\skybox\back.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="src\Textures\skybox\bottom.jpg">
+    <Image Include="src\Resources\Textures\skybox\bottom.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="src\Textures\skybox\front.jpg">
+    <Image Include="src\Resources\Textures\skybox\front.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="src\Textures\skybox\left.jpg">
+    <Image Include="src\Resources\Textures\skybox\left.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="src\Textures\skybox\right.jpg">
+    <Image Include="src\Resources\Textures\skybox\right.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="src\Textures\skybox\top.jpg">
+    <Image Include="src\Resources\Textures\skybox\top.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

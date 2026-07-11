@@ -3,25 +3,56 @@
 #include<glad/glad.h>
 
 
-IndexBuffer::IndexBuffer(uint32_t* indices, uint32_t count)
+IndexBuffer::IndexBuffer(const uint32_t* indices, uint32_t count)
+	: m_Count(count)
 {
-	glGenBuffers(1, &m_ID);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ID);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, count, indices, GL_STATIC_DRAW);
-
+	glCreateBuffers(1, &m_ID);
+	glNamedBufferData(m_ID, count * sizeof(uint32_t), indices, GL_STATIC_DRAW);
 }
 
-void IndexBuffer::Bind()
+IndexBuffer::~IndexBuffer()
+{
+	Delete();
+}
+
+IndexBuffer::IndexBuffer(IndexBuffer&& other) noexcept
+	: m_ID(other.m_ID), m_Count(other.m_Count)
+{
+	other.m_ID = 0;
+	other.m_Count = 0;
+}
+
+IndexBuffer& IndexBuffer::operator=(IndexBuffer&& other) noexcept
+{
+	if (this != &other)
+	{
+		Delete();
+		m_ID = other.m_ID;
+		m_Count = other.m_Count;
+
+		other.m_ID = 0;
+		other.m_Count = 0;
+	}
+	return *this;
+}
+
+
+void IndexBuffer::Bind() const
 {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ID);
 }
 
-void IndexBuffer::UnBind()
+void IndexBuffer::UnBind() const
 {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
 void IndexBuffer::Delete()
 {
-	glDeleteBuffers(1, &m_ID);
+	if (m_ID)
+	{
+		glDeleteBuffers(1, &m_ID);
+		m_ID = 0;
+		m_Count = 0;
+	}
 }

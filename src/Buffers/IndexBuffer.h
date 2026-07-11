@@ -6,14 +6,26 @@ class IndexBuffer
 {
 public:
 
-	IndexBuffer(uint32_t* indices, uint32_t count);
+	IndexBuffer() = default;
+	IndexBuffer(const uint32_t* indices, uint32_t count);
+	~IndexBuffer();
 
-	void Bind();
-	void UnBind();
+	IndexBuffer(const IndexBuffer&) = delete;
+	IndexBuffer& operator=(const IndexBuffer&) = delete;
+	IndexBuffer(IndexBuffer&& other) noexcept;
+	IndexBuffer& operator=(IndexBuffer&& other) noexcept;
+
+
+	void Bind() const;
+	void UnBind() const;
 	void Delete();
 
+	uint32_t GetCount() const { return m_Count; }
+
+
 private:
-	uint32_t m_ID;
+	uint32_t m_ID = 0;
+	uint32_t m_Count = 0;
 
 };
 

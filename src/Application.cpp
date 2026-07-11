@@ -17,6 +17,7 @@
 #include "Examples/CubeMapExample.h"
 #include "Examples/UniformBufferExample.h"
 #include "Examples/GeometryShaderExample.h"
+#include "Examples/InstancingExample.h"
 
 // timing
 float deltaTime = 0.0f;
@@ -50,7 +51,8 @@ int main()
     //FrameBufferExample frameBufferExample;
     //CubeMapExample cubeMapExample;
     //UniformBufferExample UniformBufferExample;
-    GeometryShaderExample geometryShaderExample;
+    //GeometryShaderExample geometryShaderExample;
+    InstancingExample instancingExample;
 
 
 
@@ -68,7 +70,8 @@ int main()
         //cubeMapExample.Reflection(g_View, g_Projection, camera);
         //UniformBufferExample.Run(g_View, g_Projection);
         //geometryShaderExample.Run(g_View, g_Projection);
-        geometryShaderExample.VisualizeNormals(g_View, g_Projection);
+        //geometryShaderExample.VisualizeNormals(g_View, g_Projection);
+        instancingExample.Run(g_View, g_Projection);
 
    
         window.OnUpdate();
