@@ -61,7 +61,9 @@ public:
 	const FramebufferSpecification& GetSpecification() const { return m_Specification; }
 	uint32_t GetColorAttachment(uint32_t index = 0) const;
 
-	static void ReadFromReadTo(const uint32_t readFrom, const uint32_t writeTo);
+	static void ReadFromReadTo(const uint32_t readFrom, const uint32_t writeTo, const uint32_t width, const uint32_t height);
+
+	uint32_t GetID() const { return m_ID; }
 
 private:
 	void Invalidate();

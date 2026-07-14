@@ -200,6 +200,8 @@ void FrameBuffer::Resize(uint32_t width, uint32_t height)
 		return;
 	}
 
+	if (width == m_Specification.Width && height == m_Specification.Height) return;
+
 	m_Specification.Width = width;
 	m_Specification.Height = height;
 
@@ -212,13 +214,14 @@ uint32_t FrameBuffer::GetColorAttachment(uint32_t index) const
 	return m_ColorAttachments[index];
 }
 
-void FrameBuffer::ReadFromReadTo(const uint32_t readFrom, const uint32_t writeTo)
+void FrameBuffer::ReadFromReadTo(const uint32_t readFrom, const uint32_t writeTo, const uint32_t width, const uint32_t height)
 {
-    glBindFramebuffer(GL_READ_FRAMEBUFFER, readFrom);
-    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, writeTo);
+	glBindFramebuffer(GL_READ_FRAMEBUFFER, readFrom);
+	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, writeTo);
 
-    // Example: glBlitFramebuffer(0, 0, width, height, 0, 0, width, height, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+	// Blit the multisampled buffer to the normal colorbuffer
+	glBlitFramebuffer(0, 0, width, height, 0, 0, width, height, GL_COLOR_BUFFER_BIT, GL_NEAREST);
 
-    // Unbind after blit
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	// Unbind after blit
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }

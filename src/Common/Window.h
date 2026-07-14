@@ -20,8 +20,11 @@ public:
 	void OnUpdate();
 
 	GLFWwindow* GetGLFWwindow() { return m_Window; }
-	uint32_t GetWidth() { return m_Width; }
-	uint32_t GetHeight() { return m_Height; }
+	uint32_t GetWidth() const { return m_Width; }
+	uint32_t GetHeight() const { return m_Height; }
+
+	uint32_t& GetWidthRef() { return m_Width; }
+	uint32_t& GetHeightRef() { return m_Height; }
 	Camera& GetCamera() { return m_Camera; }
 private:
 	bool Init();

@@ -141,6 +141,7 @@
     <ClCompile Include="src\Common\Window.cpp" />
     <ClCompile Include="src\Buffers\IndexBuffer.cpp" />
     <ClCompile Include="External\glad.c" />
+    <ClCompile Include="src\Examples\AntiAliasingExample.cpp" />
     <ClCompile Include="src\Examples\CubeMapExample.cpp" />
     <ClCompile Include="src\Examples\FrameBufferExample.cpp" />
     <ClCompile Include="src\Examples\GeometryShaderExample.cpp" />
@@ -156,6 +157,10 @@
     <ClCompile Include="src\Texture\Texture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="src\Shaders\AntiAliasing\11.2.aa_post.frag" />
+    <None Include="src\Shaders\AntiAliasing\11.2.aa_post.vert" />
+    <None Include="src\Shaders\AntiAliasing\11.2.anti_aliasing.frag" />
+    <None Include="src\Shaders\AntiAliasing\11.2.anti_aliasing.vert" />
     <None Include="src\Shaders\CubeMap\6.1.cubemaps.frag" />
     <None Include="src\Shaders\CubeMap\6.1.cubemaps.vert" />
     <None Include="src\Shaders\CubeMap\6.1.skybox.frag" />
@@ -192,6 +197,7 @@
     <ClInclude Include="src\Buffers\FrameBuffer.h" />
     <ClInclude Include="src\Buffers\UniformBuffer.h" />
     <ClInclude Include="src\Common\Window.h" />
+    <ClInclude Include="src\Examples\AntiAliasingExample.h" />
     <ClInclude Include="src\Examples\CubeMapExample.h" />
     <ClInclude Include="src\Examples\GeometryShaderExample.h" />
     <ClInclude Include="src\Examples\IExample.h" />

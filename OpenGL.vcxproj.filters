@@ -72,6 +72,9 @@
     <ClCompile Include="src\Texture\Texture2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Examples\AntiAliasingExample.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Shaders\FrameBuffer\5.1.framebuffers.vert" />
@@ -101,6 +104,10 @@
     <None Include="src\Shaders\Instancing\10.3.asteroids.frag" />
     <None Include="src\Shaders\Instancing\10.3.planet.vert" />
     <None Include="src\Shaders\Instancing\10.3.planet.frag" />
+    <None Include="src\Shaders\AntiAliasing\11.2.anti_aliasing.vert" />
+    <None Include="src\Shaders\AntiAliasing\11.2.anti_aliasing.frag" />
+    <None Include="src\Shaders\AntiAliasing\11.2.aa_post.vert" />
+    <None Include="src\Shaders\AntiAliasing\11.2.aa_post.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -167,6 +174,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Texture\Texture2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\AntiAliasingExample.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
