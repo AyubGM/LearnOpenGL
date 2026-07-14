@@ -48,7 +48,7 @@ int main()
     glm::mat4 g_Projection = glm::perspective(glm::radians(45.0f), (float)window.GetWidth() / (float)window.GetHeight(), 0.1f, 1000.0f);
     glm::mat4 g_View = camera.GetViewMatrix();
 
-    //FrameBufferExample frameBufferExample;
+    FrameBufferExample frameBufferExample(window.GetWidth(), window.GetHeight());
     //CubeMapExample cubeMapExample;
     //UniformBufferExample UniformBufferExample;
     //GeometryShaderExample geometryShaderExample;
@@ -65,13 +65,13 @@ int main()
         g_View = camera.GetViewMatrix();
 
         //frameBufferExample.Run(g_View, g_Projection);
-        //frameBufferExample.Exercise(g_View, g_Projection, camera);
+        frameBufferExample.Exercise(g_View, g_Projection, camera);
         //cubeMapExample.Run(g_View, g_Projection);
         //cubeMapExample.Reflection(g_View, g_Projection, camera);
         //UniformBufferExample.Run(g_View, g_Projection);
         //geometryShaderExample.Run(g_View, g_Projection);
         //geometryShaderExample.VisualizeNormals(g_View, g_Projection);
-        instancingExample.Run(g_View, g_Projection);
+        //instancingExample.Run(g_View, g_Projection);
 
    
         window.OnUpdate();

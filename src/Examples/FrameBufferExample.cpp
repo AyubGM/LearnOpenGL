@@ -3,13 +3,24 @@
 
 
 
-FrameBufferExample::FrameBufferExample() : 
-m_Shader("src/shaders/FrameBuffer/5.1.framebuffers.vert", "src/shaders/FrameBuffer/5.1.framebuffers.frag"),
-m_ScreenShader("src/shaders/FrameBuffer/5.1.framebuffers_screen.vert", "src/shaders/FrameBuffer/5.1.framebuffers_screen.frag")
+// Replace this line:
+// m_FrameBuffer = FrameBuffer(spec);
+
+// With in-place construction using the member initializer list in the constructor:
+FrameBufferExample::FrameBufferExample(uint32_t width, uint32_t height)
+    : m_Shader("src/shaders/FrameBuffer/5.1.framebuffers.vert", "src/shaders/FrameBuffer/5.1.framebuffers.frag"),
+      m_ScreenShader("src/shaders/FrameBuffer/5.1.framebuffers_screen.vert", "src/shaders/FrameBuffer/5.1.framebuffers_screen.frag"),
+      m_FrameBuffer([&]{
+          FramebufferSpecification spec;
+          spec.Width = width;
+          spec.Height = height;
+          spec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::Depth };
+          return FrameBuffer(spec);
+      }())
 {
-	SetUpTextures();
-	SetUpBuffers();
-	SetUpShaders();
+    SetUpTextures();
+    SetUpBuffers();
+    SetUpShaders();
 }
 
 FrameBufferExample::~FrameBufferExample()
@@ -166,7 +177,7 @@ void FrameBufferExample::Run(const glm::mat4& view, const glm::mat4& projection)
 
     m_ScreenShader.Bind();
     m_QuadVAO.Bind();
-    glBindTexture(GL_TEXTURE_2D, m_FrameBuffer.GetTextureColorBuffer());
+    glBindTexture(GL_TEXTURE_2D, m_FrameBuffer.GetColorAttachment());
     glDrawArrays(GL_TRIANGLES, 0, 6);
     
 }
@@ -243,6 +254,6 @@ void FrameBufferExample::Exercise(glm::mat4& view, glm::mat4& projection, Camera
     glDisable(GL_DEPTH_TEST);
     m_ScreenShader.Bind();
     m_QuadVAO.Bind();
-    glBindTexture(GL_TEXTURE_2D, m_FrameBuffer.GetTextureColorBuffer());
+    glBindTexture(GL_TEXTURE_2D, m_FrameBuffer.GetColorAttachment());
     glDrawArrays(GL_TRIANGLES, 0, 6);
 }

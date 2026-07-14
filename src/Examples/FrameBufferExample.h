@@ -9,7 +9,7 @@
 class FrameBufferExample : public IExample
 {
 public:
-	FrameBufferExample();
+	FrameBufferExample(uint32_t width, uint32_t height);
 	~FrameBufferExample();
 
 
