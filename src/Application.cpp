@@ -19,6 +19,7 @@
 #include "Examples/GeometryShaderExample.h"
 #include "Examples/InstancingExample.h"
 #include "Examples/AntiAliasingExample.h"
+#include "Examples/AdvancedLightingExample.h"
 
 // timing
 float deltaTime = 0.0f;
@@ -54,7 +55,8 @@ int main()
     //UniformBufferExample UniformBufferExample;
     //GeometryShaderExample geometryShaderExample;
     //InstancingExample instancingExample;
-    AntiAliasingExample antiAliasingExample(window.GetWidthRef(), window.GetHeightRef());
+    //AntiAliasingExample antiAliasingExample(window.GetWidthRef(), window.GetHeightRef());
+    AdvancedLightingExample advancedLightingExample(camera);
 
 
     while(!glfwWindowShouldClose(window.GetGLFWwindow()))
@@ -73,7 +75,8 @@ int main()
         //geometryShaderExample.Run(g_View, g_Projection);
         //geometryShaderExample.VisualizeNormals(g_View, g_Projection);
         //instancingExample.Run(g_View, g_Projection);
-        antiAliasingExample.Run(g_View, g_Projection);
+        //antiAliasingExample.Run(g_View, g_Projection);
+        advancedLightingExample.Run(g_View, g_Projection);
 
    
         window.OnUpdate();

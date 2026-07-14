@@ -75,6 +75,9 @@
     <ClCompile Include="src\Examples\AntiAliasingExample.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Examples\AdvancedLightingExample.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Shaders\FrameBuffer\5.1.framebuffers.vert" />
@@ -108,6 +111,8 @@
     <None Include="src\Shaders\AntiAliasing\11.2.anti_aliasing.frag" />
     <None Include="src\Shaders\AntiAliasing\11.2.aa_post.vert" />
     <None Include="src\Shaders\AntiAliasing\11.2.aa_post.frag" />
+    <None Include="src\Shaders\AdvancedLighting\1.advanced_lighting.vert" />
+    <None Include="src\Shaders\AdvancedLighting\1.advanced_lighting.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -177,6 +182,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Examples\AntiAliasingExample.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\AdvancedLightingExample.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
