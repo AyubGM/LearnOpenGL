@@ -174,6 +174,7 @@ void FrameBuffer::Invalidate()
 	{
 		// Only depth-pass
 		glDrawBuffer(GL_NONE);
+		glReadBuffer(GL_NONE);
 	}
 
 	assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE && "ERROR::FRAMEBUFFER:: Framebuffer is not complete!");

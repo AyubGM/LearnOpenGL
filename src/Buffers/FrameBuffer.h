@@ -60,6 +60,7 @@ public:
 
 	const FramebufferSpecification& GetSpecification() const { return m_Specification; }
 	uint32_t GetColorAttachment(uint32_t index = 0) const;
+	uint32_t GetDepthAttachment() const { return m_DepthAttachment; }
 
 	static void ReadFromReadTo(const uint32_t readFrom, const uint32_t writeTo, const uint32_t width, const uint32_t height);
 

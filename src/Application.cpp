@@ -20,6 +20,7 @@
 #include "Examples/InstancingExample.h"
 #include "Examples/AntiAliasingExample.h"
 #include "Examples/AdvancedLightingExample.h"
+#include "Examples/ShadowMappingExample.h"
 
 // timing
 float deltaTime = 0.0f;
@@ -56,7 +57,8 @@ int main()
     //GeometryShaderExample geometryShaderExample;
     //InstancingExample instancingExample;
     //AntiAliasingExample antiAliasingExample(window.GetWidthRef(), window.GetHeightRef());
-    AdvancedLightingExample advancedLightingExample(camera);
+    //AdvancedLightingExample advancedLightingExample(camera);
+    ShadowMappingExample shadowMappingExample(window.GetWidthRef(), window.GetHeightRef());
 
 
     while(!glfwWindowShouldClose(window.GetGLFWwindow()))
@@ -76,7 +78,9 @@ int main()
         //geometryShaderExample.VisualizeNormals(g_View, g_Projection);
         //instancingExample.Run(g_View, g_Projection);
         //antiAliasingExample.Run(g_View, g_Projection);
-        advancedLightingExample.Run(g_View, g_Projection);
+        //advancedLightingExample.Run(g_View, g_Projection);
+        //shadowMappingExample.Run(g_View, g_Projection);
+        shadowMappingExample.ShadowsRun(g_View, g_Projection, camera.Position);
 
    
         window.OnUpdate();

@@ -147,6 +147,7 @@
     <ClCompile Include="src\Examples\FrameBufferExample.cpp" />
     <ClCompile Include="src\Examples\GeometryShaderExample.cpp" />
     <ClCompile Include="src\Examples\InstancingExample.cpp" />
+    <ClCompile Include="src\Examples\ShadowMappingExample.cpp" />
     <ClCompile Include="src\Examples\UniformBufferExample.cpp" />
     <ClCompile Include="src\Geometry\Mesh.cpp" />
     <ClCompile Include="src\Geometry\Model.cpp" />
@@ -186,6 +187,12 @@
     <None Include="src\Shaders\Instancing\10.3.asteroids.vert" />
     <None Include="src\Shaders\Instancing\10.3.planet.frag" />
     <None Include="src\Shaders\Instancing\10.3.planet.vert" />
+    <None Include="src\Shaders\ShadowMapping\3.1.1.debug_quad.frag" />
+    <None Include="src\Shaders\ShadowMapping\3.1.1.debug_quad.vert" />
+    <None Include="src\Shaders\ShadowMapping\3.1.1.shadow_mapping_depth.frag" />
+    <None Include="src\Shaders\ShadowMapping\3.1.1.shadow_mapping_depth.vert" />
+    <None Include="src\Shaders\ShadowMapping\3.1.2.shadow_mapping.frag" />
+    <None Include="src\Shaders\ShadowMapping\3.1.2.shadow_mapping.vert" />
     <None Include="src\Shaders\UnifomBuffer\8.advanced_glsl.vert" />
     <None Include="src\Shaders\UnifomBuffer\8.blue.frag" />
     <None Include="src\Shaders\UnifomBuffer\8.green.frag" />
@@ -207,6 +214,7 @@
     <ClInclude Include="src\Examples\IExample.h" />
     <ClInclude Include="src\Examples\FrameBufferExample.h" />
     <ClInclude Include="src\Examples\InstancingExample.h" />
+    <ClInclude Include="src\Examples\ShadowMappingExample.h" />
     <ClInclude Include="src\Examples\UniformBufferExample.h" />
     <ClInclude Include="src\Geometry\Mesh.h" />
     <ClInclude Include="src\Buffers\IndexBuffer.h" />
