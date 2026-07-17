@@ -2,6 +2,14 @@
 #include <cstdint>
 #include <vector>
 
+enum class TextureTarget
+{
+	none = 0,
+
+	Texture2D,
+	TextureCubeMap,
+};
+
 enum class FramebufferTextureFormat
 {
 	None = 0,
@@ -20,11 +28,12 @@ enum class FramebufferTextureFormat
 struct FramebufferTextureSpecification
 {
 	FramebufferTextureSpecification() = default;
-	FramebufferTextureSpecification(FramebufferTextureFormat format)
-		: TextureFormat(format) {
+	FramebufferTextureSpecification(FramebufferTextureFormat format, TextureTarget textureTarget = TextureTarget::Texture2D)
+		: TextureFormat(format), TextureTarget(textureTarget) {
 	}
-
+	
 	FramebufferTextureFormat TextureFormat = FramebufferTextureFormat::None;
+	TextureTarget TextureTarget = TextureTarget::Texture2D;
 };
 
 struct FramebufferAttachmentSpecification
@@ -52,9 +61,13 @@ public:
 	~FrameBuffer();
 	FrameBuffer(const FrameBuffer&) = delete;
 	FrameBuffer& operator=(const FrameBuffer&) = delete;
+	FrameBuffer(FrameBuffer&& other) noexcept;
+	FrameBuffer& operator=(FrameBuffer&& other) noexcept;
 
 	void Bind() const;
 	void UnBind() const;
+
+	void BindFace(uint32_t faceIndex) const;
 
 	void Resize(uint32_t width, uint32_t height);
 
@@ -74,7 +87,7 @@ private:
 	FramebufferSpecification m_Specification;
 
 	std::vector<FramebufferTextureSpecification> m_ColorAttachmentSpecifications;
-	FramebufferTextureSpecification m_DepthAttachmentSpecification = FramebufferTextureFormat::None;
+	FramebufferTextureSpecification m_DepthAttachmentSpecification{ FramebufferTextureFormat::None, TextureTarget::none};
 
 	std::vector<uint32_t> m_ColorAttachments;
 	uint32_t m_DepthAttachment = 0;
