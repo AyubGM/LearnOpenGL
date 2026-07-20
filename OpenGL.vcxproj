@@ -147,6 +147,7 @@
     <ClCompile Include="src\Examples\FrameBufferExample.cpp" />
     <ClCompile Include="src\Examples\GeometryShaderExample.cpp" />
     <ClCompile Include="src\Examples\InstancingExample.cpp" />
+    <ClCompile Include="src\Examples\PointShadowsExample.cpp" />
     <ClCompile Include="src\Examples\ShadowMappingExample.cpp" />
     <ClCompile Include="src\Examples\UniformBufferExample.cpp" />
     <ClCompile Include="src\Geometry\Mesh.cpp" />
@@ -187,6 +188,11 @@
     <None Include="src\Shaders\Instancing\10.3.asteroids.vert" />
     <None Include="src\Shaders\Instancing\10.3.planet.frag" />
     <None Include="src\Shaders\Instancing\10.3.planet.vert" />
+    <None Include="src\Shaders\PointShadows\3.2.2.point_shadows.frag" />
+    <None Include="src\Shaders\PointShadows\3.2.2.point_shadows.vert" />
+    <None Include="src\Shaders\PointShadows\3.2.2.point_shadows_depth.frag" />
+    <None Include="src\Shaders\PointShadows\3.2.2.point_shadows_depth.geom" />
+    <None Include="src\Shaders\PointShadows\3.2.2.point_shadows_depth.vert" />
     <None Include="src\Shaders\ShadowMapping\3.1.1.debug_quad.frag" />
     <None Include="src\Shaders\ShadowMapping\3.1.1.debug_quad.vert" />
     <None Include="src\Shaders\ShadowMapping\3.1.1.shadow_mapping_depth.frag" />
@@ -214,6 +220,7 @@
     <ClInclude Include="src\Examples\IExample.h" />
     <ClInclude Include="src\Examples\FrameBufferExample.h" />
     <ClInclude Include="src\Examples\InstancingExample.h" />
+    <ClInclude Include="src\Examples\PointShadowsExample.h" />
     <ClInclude Include="src\Examples\ShadowMappingExample.h" />
     <ClInclude Include="src\Examples\UniformBufferExample.h" />
     <ClInclude Include="src\Geometry\Mesh.h" />
