@@ -84,6 +84,9 @@
     <ClCompile Include="src\Examples\PointShadowsExample.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Examples\NormalMappingExample.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Shaders\FrameBuffer\5.1.framebuffers.vert" />
@@ -130,6 +133,8 @@
     <None Include="src\Shaders\PointShadows\3.2.2.point_shadows_depth.vert" />
     <None Include="src\Shaders\PointShadows\3.2.2.point_shadows_depth.frag" />
     <None Include="src\Shaders\PointShadows\3.2.2.point_shadows_depth.geom" />
+    <None Include="src\Shaders\NormalMapping\4.normal_mapping.vert" />
+    <None Include="src\Shaders\NormalMapping\4.normal_mapping.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -208,6 +213,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Examples\PointShadowsExample.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\NormalMappingExample.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
