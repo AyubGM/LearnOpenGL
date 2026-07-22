@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\dev\LearnOpenGL\include;C:\dev\LearnOpenGL\include\assimp\include;C:\dev\LearnOpenGL\include\OpenGL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\dev\LearnOpenGL\include\assimp\lib;C:\dev\LearnOpenGL\include\OpenGL\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\dev\LearnOpenGL\include;C:\dev\LearnOpenGL\include\assimp\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\dev\LearnOpenGL\include\assimp\lib;C:\dev\LearnOpenGL\include\GLFW\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -141,7 +141,7 @@
     <ClCompile Include="src\Buffers\UniformBuffer.cpp" />
     <ClCompile Include="src\Common\Window.cpp" />
     <ClCompile Include="src\Buffers\IndexBuffer.cpp" />
-    <ClCompile Include="External\glad.c" />
+    <ClCompile Include="vendors\glad.c" />
     <ClCompile Include="src\Examples\AdvancedLightingExample.cpp" />
     <ClCompile Include="src\Examples\AntiAliasingExample.cpp" />
     <ClCompile Include="src\Examples\CubeMapExample.cpp" />
@@ -155,7 +155,7 @@
     <ClCompile Include="src\Geometry\Mesh.cpp" />
     <ClCompile Include="src\Geometry\Model.cpp" />
     <ClCompile Include="src\Shader.cpp" />
-    <ClCompile Include="External\stb_image.cpp" />
+    <ClCompile Include="vendors\stb_image.cpp" />
     <ClCompile Include="src\Buffers\VertexArray.cpp" />
     <ClCompile Include="src\Buffers\VertexBuffer.cpp" />
     <ClCompile Include="src\TextureLoader.cpp" />
