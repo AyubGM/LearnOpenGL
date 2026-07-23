@@ -2,9 +2,9 @@
 #include <GLFW/glfw3.h>
 
 NormalMappingExample::NormalMappingExample(uint32_t& width, uint32_t& height, Camera& camera) :
-m_Shader("src/shaders/NormalMapping/4.normal_mapping.vert", "src/shaders/NormalMapping/4.normal_mapping.frag"),
-m_DiffuseMap("src/Resources/textures/brickwall.jpg"),
-m_NormalMap("src/Resources/textures/brickwall_normal.jpg"),
+m_Shader("shaders/NormalMapping/4.normal_mapping.vert", "shaders/NormalMapping/4.normal_mapping.frag"),
+m_DiffuseMap("Resources/textures/brickwall.jpg"),
+m_NormalMap("Resources/textures/brickwall_normal.jpg"),
 m_LightPos(0.5f, 1.0f, 0.3f),
 m_Camera(camera)
 {
