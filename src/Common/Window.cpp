@@ -1,10 +1,11 @@
 #include "Window.h"
 #include <GLFW/glfw3.h>
 #include <print>
+#include "../Events/EventDispatcher.h"
 
 namespace Utils
 {
-    static void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+    static void FramebufferSizeCallbackFn(GLFWwindow* window, int width, int height)
     {
         Window* win = static_cast<Window*>(glfwGetWindowUserPointer(window));
 
@@ -12,19 +13,23 @@ namespace Utils
             win->OnFramebufferResize(width, height);
     }
 
-    static void cursor_position_callback(GLFWwindow* window, double xposIn, double yposIn)
+    static void CursorPositionCallbackFn(GLFWwindow* window, double xposIn, double yposIn)
     {
         // Retrieve the Window instance from the user pointer
         Window* win = static_cast<Window*>(glfwGetWindowUserPointer(window));
         if (win)
             win->OnCursorPos(xposIn, yposIn);
+
+		g_EventDispatcher.DispatchEvent<MouseMoveEvent>(MouseMoveEvent{ xposIn, yposIn });
     }
 
-    static void scroll_callback(GLFWwindow* window, double xOffset, double yOffset)
+    static void ScrollCallbackFn(GLFWwindow* window, double xOffset, double yOffset)
     {
         Window* win = static_cast<Window*>(glfwGetWindowUserPointer(window));
         if (win)
             win->OnScroll(yOffset);
+
+		g_EventDispatcher.DispatchEvent<MouseScrollEvent>(MouseScrollEvent{ xOffset, yOffset });
     }
 
 }
@@ -54,9 +59,9 @@ bool Window::Init()
 
     glfwSetWindowUserPointer(m_Window, this);
 
-    glfwSetFramebufferSizeCallback(m_Window, Utils::framebuffer_size_callback);
-    glfwSetCursorPosCallback(m_Window, Utils::cursor_position_callback);
-    glfwSetScrollCallback(m_Window, Utils::scroll_callback);
+    glfwSetFramebufferSizeCallback(m_Window, Utils::FramebufferSizeCallbackFn);
+    glfwSetCursorPosCallback(m_Window, Utils::CursorPositionCallbackFn);
+    glfwSetScrollCallback(m_Window, Utils::ScrollCallbackFn);
     // tell GLFW to capture our mouse
     //glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 

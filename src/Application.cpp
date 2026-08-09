@@ -23,6 +23,7 @@
 #include "Examples/ShadowMappingExample.h"
 #include "Examples/PointShadowsExample.h"
 #include "Examples/NormalMappingExample.h"
+#include <Examples/ParallaxMappingExample.h>
 
 // timing
 float deltaTime = 0.0f;
@@ -62,8 +63,8 @@ int main()
     //AdvancedLightingExample advancedLightingExample(camera);
     //ShadowMappingExample shadowMappingExample(window.GetWidthRef(), window.GetHeightRef());
     //PointShadowsExample pointShadowsExample(window.GetWidthRef(), window.GetHeightRef(), camera);
-    NormalMappingExample normalMappingExample(window.GetWidthRef(), window.GetHeightRef(), camera);
-
+    //NormalMappingExample normalMappingExample(window.GetWidthRef(), window.GetHeightRef(), camera);
+    ParallaxMappingExample parallaxMappingExample(camera);
 
     while(!glfwWindowShouldClose(window.GetGLFWwindow()))
     {
@@ -86,7 +87,8 @@ int main()
         //shadowMappingExample.Run(g_View, g_Projection);
         //shadowMappingExample.ShadowsRun(g_View, g_Projection, camera.Position);
         //pointShadowsExample.Run(g_View, g_Projection);
-        normalMappingExample.Run(g_View, g_Projection);
+        //normalMappingExample.Run(g_View, g_Projection);
+        parallaxMappingExample.Run(g_View, g_Projection);
 
    
         window.OnUpdate();
