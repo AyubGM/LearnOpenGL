@@ -11,6 +11,8 @@ namespace Utils
 
         if (win)
             win->OnFramebufferResize(width, height);
+
+		g_EventDispatcher.DispatchEvent<FramebufferResizeEvent>(FramebufferResizeEvent{ width, height });
     }
 
     static void CursorPositionCallbackFn(GLFWwindow* window, double xposIn, double yposIn)
@@ -20,7 +22,7 @@ namespace Utils
         if (win)
             win->OnCursorPos(xposIn, yposIn);
 
-		g_EventDispatcher.DispatchEvent<MouseMoveEvent>(MouseMoveEvent{ xposIn, yposIn });
+
     }
 
     static void ScrollCallbackFn(GLFWwindow* window, double xOffset, double yOffset)
@@ -32,10 +34,16 @@ namespace Utils
 		g_EventDispatcher.DispatchEvent<MouseScrollEvent>(MouseScrollEvent{ xOffset, yOffset });
     }
 
+    static void KeyCallbackFn(GLFWwindow* window, int key, int scancode, int action, int mods)
+    {
+
+      g_EventDispatcher.DispatchEvent<KeyEvent>(KeyEvent{ key, action, mods });
+
+    }
 }
 
-Window::Window(uint32_t width, uint32_t height, std::string_view name, const Camera& camera) : 
-    m_Width(width), m_Height(height), m_Name(name), m_Camera(camera), m_FirstMove(true)
+Window::Window(uint32_t width, uint32_t height, std::string_view name) : 
+    m_Width(width), m_Height(height), m_Name(name), m_FirstMove(true)
 {
     Init();
 }
@@ -62,6 +70,7 @@ bool Window::Init()
     glfwSetFramebufferSizeCallback(m_Window, Utils::FramebufferSizeCallbackFn);
     glfwSetCursorPosCallback(m_Window, Utils::CursorPositionCallbackFn);
     glfwSetScrollCallback(m_Window, Utils::ScrollCallbackFn);
+	glfwSetKeyCallback(m_Window, Utils::KeyCallbackFn);
     // tell GLFW to capture our mouse
     //glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
@@ -113,13 +122,11 @@ void Window::OnCursorPos(double xpos, double ypos)
             lastY = 1;
         }
     }
-
-    m_Camera.ProcessMouseMovement(static_cast<float>(xoffset), static_cast<float>(yoffset));
+    g_EventDispatcher.DispatchEvent<MouseMoveEvent>(MouseMoveEvent{ xoffset, yoffset });
 }
 
 void Window::OnScroll(double yoffset)
 {
-    m_Camera.ProcessMouseScroll(static_cast<float>(yoffset));
 }
 
 void Window::OnFramebufferResize(int width, int height)
@@ -149,20 +156,6 @@ void Window::ProcessInput(float deltaTime)
         glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
         m_FocusMode = false;
     }
-
-    if (glfwGetKey(m_Window, GLFW_KEY_W) == GLFW_PRESS)
-        m_Camera.ProcessKeyboard(CameraMovement::FORWARD, deltaTime);
-    if (glfwGetKey(m_Window, GLFW_KEY_S) == GLFW_PRESS)
-        m_Camera.ProcessKeyboard(CameraMovement::BACKWARD, deltaTime);
-    if (glfwGetKey(m_Window, GLFW_KEY_A) == GLFW_PRESS)
-        m_Camera.ProcessKeyboard(CameraMovement::LEFT, deltaTime);
-    if (glfwGetKey(m_Window, GLFW_KEY_D) == GLFW_PRESS)
-        m_Camera.ProcessKeyboard(CameraMovement::RIGHT, deltaTime);
-    if (glfwGetKey(m_Window, GLFW_KEY_SPACE) == GLFW_PRESS)
-        m_Camera.ProcessKeyboard(CameraMovement::Jump, deltaTime);
-    if (glfwGetKey(m_Window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
-        m_Camera.ProcessKeyboard(CameraMovement::Down, deltaTime);
-    
     
 }
 

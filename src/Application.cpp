@@ -29,18 +29,19 @@
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
-void DeltaTime(Window& window)
+void DeltaTime(Window& window, Camera& camera)
 {
     float currentFrame = static_cast<float>(glfwGetTime());
     deltaTime = currentFrame - lastFrame;
     lastFrame = currentFrame;
     window.ProcessInput(deltaTime);
+	camera.Update(deltaTime);
 }
 
 int main()
 {
     Window window;
-    Camera& camera = window.GetCamera();
+    Camera camera;
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
@@ -68,7 +69,7 @@ int main()
 
     while(!glfwWindowShouldClose(window.GetGLFWwindow()))
     {
-        DeltaTime(window);
+        DeltaTime(window, camera);
         
         // configure transformation matrices
         g_Projection = glm::perspective(glm::radians(45.0f), (float)window.GetWidth() / (float)window.GetHeight(), 0.1f, 1000.0f);

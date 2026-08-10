@@ -10,8 +10,8 @@ struct KeyEvent{
 
 struct MouseMoveEvent
 {
-	double XPos;
-	double YPos;
+	double XOffset;
+	double YOffset;
 };
 
 struct MouseScrollEvent
@@ -25,6 +25,12 @@ struct MouseButtonEvent
 	int Button;
 	int Action;
 	int Mods;
+};
+
+struct FramebufferResizeEvent
+{
+	int Width;
+	int Height;
 };
 
 class EventDispatcher
@@ -43,6 +49,7 @@ private:
 	std::vector<std::function<void(const MouseMoveEvent&)>> m_MouseMoveEventCallbacks;
 	std::vector<std::function<void(const MouseScrollEvent&)>> m_MouseScrollEventCallbacks;
 	std::vector<std::function<void(const MouseButtonEvent&)>> m_MouseButtonEventCallbacks;
+	std::vector<std::function<void(const FramebufferResizeEvent&)>> m_FramebufferResizeEventCallbacks;
 };
 
 inline EventDispatcher g_EventDispatcher;

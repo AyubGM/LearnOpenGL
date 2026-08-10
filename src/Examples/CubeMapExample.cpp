@@ -1,10 +1,6 @@
 #include "CubeMapExample.h"
 
-#include "../TextureLoader.h"
-
-
-
-
+#include "../Texture/TextureLoader.h"
 
 CubeMapExample::CubeMapExample() :
     m_Shader("src/shaders/CubeMap/6.1.cubemaps.vert", "src/shaders/CubeMap/6.1.cubemaps.frag"),

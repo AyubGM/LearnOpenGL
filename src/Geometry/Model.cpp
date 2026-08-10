@@ -1,5 +1,5 @@
 #include "Model.h"
-#include "../TextureLoader.h"
+#include "../Texture/TextureLoader.h"
 
 Model::Model(std::string path)
 {
