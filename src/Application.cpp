@@ -25,6 +25,7 @@
 #include "Examples/NormalMappingExample.h"
 #include <Examples/ParallaxMappingExample.h>
 #include <Examples/HDRExample.h>
+#include <Examples/BloomExample.h>
 
 // timing
 float deltaTime = 0.0f;
@@ -66,8 +67,9 @@ int main()
     //ShadowMappingExample shadowMappingExample(window.GetWidthRef(), window.GetHeightRef());
     //PointShadowsExample pointShadowsExample(window.GetWidthRef(), window.GetHeightRef(), camera);
     //NormalMappingExample normalMappingExample(window.GetWidthRef(), window.GetHeightRef(), camera);
-    ParallaxMappingExample parallaxMappingExample(camera);
-	HDRExample hRExample(window.GetWidthRef(), window.GetHeightRef(), camera);
+    //ParallaxMappingExample parallaxMappingExample(camera);
+	//HDRExample hRExample(window.GetWidthRef(), window.GetHeightRef(), camera);
+    BloomExample bloomExample(window.GetWidthRef(), window.GetHeightRef(), camera);
 
     while(!glfwWindowShouldClose(window.GetGLFWwindow()))
     {
@@ -92,7 +94,9 @@ int main()
         //pointShadowsExample.Run(g_View, g_Projection);
         //normalMappingExample.Run(g_View, g_Projection);
         //parallaxMappingExample.Run(g_View, g_Projection);
-		hRExample.Run(g_View, g_Projection);
+		//hRExample.Run(g_View, g_Projection);
+        bloomExample.Run(g_View, g_Projection);
+
 
    
         window.OnUpdate();
