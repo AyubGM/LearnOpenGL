@@ -3,8 +3,8 @@
 #include <stb_image.h>
 #include <iostream>
 
-Texture2D::Texture2D(const std::string& path, const std::string& type)
-	: m_Path(path), m_Type(type)
+Texture2D::Texture2D(const std::string& path, const std::string& type, bool gammaCorrection)
+	: m_Path(path), m_Type(type), m_GammaCorrection(gammaCorrection)
 {
 	int width, height, channels;
 	stbi_set_flip_vertically_on_load(true);
@@ -23,12 +23,12 @@ Texture2D::Texture2D(const std::string& path, const std::string& type)
 		}
 		else if (channels == 3)
 		{
-			internalFormat = GL_RGB8;
+			internalFormat = m_GammaCorrection ? GL_SRGB8 : GL_RGB8;
 			dataFormat = GL_RGB;
 		}
 		else if (channels == 4)
 		{
-			internalFormat = GL_RGBA8;
+			internalFormat = m_GammaCorrection ? GL_SRGB8_ALPHA8 : GL_RGBA8;
 			dataFormat = GL_RGBA;
 		}
 

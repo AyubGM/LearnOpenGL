@@ -178,6 +178,9 @@ void FrameBuffer::Invalidate()
 			case FramebufferTextureFormat::RGBA8:
 				Utils::AttachColorTexture(m_ID, m_ColorAttachments[i], m_Specification.Samples, GL_RGBA8, m_Specification.Width, m_Specification.Height, i);
 				break;
+			case FramebufferTextureFormat::RGBA16F:
+				Utils::AttachColorTexture(m_ID, m_ColorAttachments[i], m_Specification.Samples, GL_RGBA16F, m_Specification.Width, m_Specification.Height, i);
+				break;
 			case FramebufferTextureFormat::RED_INTEGER:
 				Utils::AttachColorTexture(m_ID, m_ColorAttachments[i], m_Specification.Samples, GL_R32I, m_Specification.Width, m_Specification.Height, i);
 				break;

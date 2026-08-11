@@ -35,7 +35,7 @@ void Camera::SubscribeToEvents()
 		case GLFW_KEY_A:         m_MoveLeft = pressed; break;
 		case GLFW_KEY_D:         m_MoveRight = pressed; break;
 		case GLFW_KEY_SPACE:     m_MoveUp = pressed; break;
-		case GLFW_KEY_LEFT_SHIFT:m_MoveDown = pressed; break;
+		case GLFW_KEY_LEFT_CONTROL:m_MoveDown = pressed; break;
 		}
 		});
 

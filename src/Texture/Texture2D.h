@@ -7,7 +7,7 @@ class Texture2D
 {
 public:
 	Texture2D() = default;
-	Texture2D(const std::string& path, const std::string& type = "texture_diffuse");
+	Texture2D(const std::string& path, const std::string& type = "texture_diffuse", bool gammaCorrection = false);
 	~Texture2D();
 
 	// Rule of 5: Move semantics (prevent copy, allow move)
@@ -34,4 +34,5 @@ private:
 	uint32_t m_Height = 0;
 	std::string m_Path;
 	std::string m_Type;
+	bool m_GammaCorrection;
 };
