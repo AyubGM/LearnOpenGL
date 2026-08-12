@@ -128,12 +128,15 @@ std::vector<std::shared_ptr<Texture2D>> Model::LoadMaterialTextures(aiMaterial* 
         mat->GetTexture(type, i, &str);
         bool skip = false;
 
+        std::string relativePath = str.C_Str();
+        std::string fullPath = m_Directory + "/" + relativePath;
+
         // Check if texture was loaded before
-        for (unsigned int j = 0; j < loadedTextures.size(); j++)
+        for (unsigned int j = 0; j < m_loadedTextures.size(); j++)
         {
-            if (std::strcmp(loadedTextures[j]->GetPath().data(), str.C_Str()) == 0)
+            if (m_loadedTextures[j]->GetPath() == fullPath)
             {
-                textures.push_back(loadedTextures[j]);
+                textures.push_back(m_loadedTextures[j]);
                 skip = true;
                 break;
             }
@@ -146,7 +149,7 @@ std::vector<std::shared_ptr<Texture2D>> Model::LoadMaterialTextures(aiMaterial* 
             auto texture = std::make_shared<Texture2D>(fullpath, typeName);
 
             textures.push_back(texture);
-            loadedTextures.push_back(texture);
+            m_loadedTextures.push_back(texture);
         }
     }
     return textures;

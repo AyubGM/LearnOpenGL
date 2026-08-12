@@ -12,7 +12,7 @@
 class Model
 {
 public:
-    std::vector<std::shared_ptr<Texture2D>> loadedTextures; // Global cache of loaded textures
+    std::vector<std::shared_ptr<Texture2D>> m_loadedTextures; // Global cache of loaded textures
 
     Model(std::string path);
 

@@ -4,7 +4,7 @@ DeferredShadingExample::DeferredShadingExample(uint32_t& width, uint32_t& height
 	m_ShaderGeometryPass("Shaders/DeferredShading/8.2.g_buffer.vert", "Shaders/DeferredShading/8.2.g_buffer.frag"),
 	m_ShaderLightingPass("Shaders/DeferredShading/8.2.deferred_shading.vert", "Shaders/DeferredShading/8.2.deferred_shading.frag"),
 	m_ShaderLightBox("Shaders/DeferredShading/8.2.deferred_light_box.vert", "Shaders/DeferredShading/8.2.deferred_light_box.frag"),
-	//m_Backpack("Resources/Objects/backpack/backpack.obj"),
+	m_Backpack("Resources/Objects/backpack/backpack.obj"),
     m_Width(width),
     m_Height(height),
     m_Camera(camera),
@@ -158,10 +158,10 @@ void DeferredShadingExample::Run(const glm::mat4& view, const glm::mat4& project
         model = glm::translate(model, m_ObjectPositions[i]);
         model = glm::scale(model, glm::vec3(0.25f));
         m_ShaderGeometryPass.setMat4("model", model);
-        m_ContainerTexture.Bind();
-        m_ContainerTextureSpec.Bind(1);
-        RenderCube();
-        //m_Backpack.Draw(m_ShaderGeometryPass);
+        //m_ContainerTexture.Bind();
+        //m_ContainerTextureSpec.Bind(1);
+        //RenderCube();
+        m_Backpack.Draw(m_ShaderGeometryPass);
     }
     m_GBuffer.UnBind();
 

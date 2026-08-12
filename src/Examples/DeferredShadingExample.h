@@ -46,7 +46,7 @@ private:
 
 	FrameBuffer m_GBuffer;
 
-	//Model m_Backpack;
+	Model m_Backpack;
 
 
 	std::vector<glm::vec3> m_ObjectPositions;
