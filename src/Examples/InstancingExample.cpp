@@ -3,9 +3,9 @@
 
 
 InstancingExample::InstancingExample(uint32_t amount) :
-m_AsteroidShader("src/shaders/Instancing/10.3.asteroids.vert", "src/shaders/Instancing/10.3.asteroids.frag"),
-m_PlanetShader("src/shaders/Instancing/10.3.planet.vert", "src/shaders/Instancing/10.3.planet.frag"), 
-m_RockModel("src/Resources/rock/rock.obj"), m_PlanetModel("src/Resources/planet/planet.obj"),
+m_AsteroidShader("shaders/Instancing/10.3.asteroids.vert", "shaders/Instancing/10.3.asteroids.frag"),
+m_PlanetShader("shaders/Instancing/10.3.planet.vert", "shaders/Instancing/10.3.planet.frag"), 
+m_RockModel("Resources/Objects/rock/rock.obj"), m_PlanetModel("Resources/Objects/planet/planet.obj"),
 m_Amount(amount)
 {
     SetUpBuffers();

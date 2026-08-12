@@ -26,6 +26,7 @@
 #include <Examples/ParallaxMappingExample.h>
 #include <Examples/HDRExample.h>
 #include <Examples/BloomExample.h>
+#include <Examples/DeferredShadingExample.h>
 
 // timing
 float deltaTime = 0.0f;
@@ -69,7 +70,8 @@ int main()
     //NormalMappingExample normalMappingExample(window.GetWidthRef(), window.GetHeightRef(), camera);
     //ParallaxMappingExample parallaxMappingExample(camera);
 	//HDRExample hRExample(window.GetWidthRef(), window.GetHeightRef(), camera);
-    BloomExample bloomExample(window.GetWidthRef(), window.GetHeightRef(), camera);
+    //BloomExample bloomExample(window.GetWidthRef(), window.GetHeightRef(), camera);
+    DeferredShadingExample deferredShadingExample(window.GetWidthRef(), window.GetHeightRef(), camera);
 
     while(!glfwWindowShouldClose(window.GetGLFWwindow()))
     {
@@ -95,7 +97,8 @@ int main()
         //normalMappingExample.Run(g_View, g_Projection);
         //parallaxMappingExample.Run(g_View, g_Projection);
 		//hRExample.Run(g_View, g_Projection);
-        bloomExample.Run(g_View, g_Projection);
+        //bloomExample.Run(g_View, g_Projection);
+        deferredShadingExample.Run(g_View, g_Projection);
 
 
    

@@ -260,7 +260,7 @@ uint32_t FrameBuffer::GetColorAttachment(uint32_t index) const
 	return m_ColorAttachments[index];
 }
 
-void FrameBuffer::ReadFromReadTo(const uint32_t readFrom, const uint32_t writeTo, const uint32_t width, const uint32_t height)
+void FrameBuffer::ReadFromReadTo(const uint32_t readFrom, const uint32_t writeTo, const uint32_t width, const uint32_t height, bool readDepth)
 {
-	glBlitNamedFramebuffer(readFrom, writeTo, 0, 0, width, height, 0, 0, width, height, GL_COLOR_BUFFER_BIT, GL_NEAREST);
+	glBlitNamedFramebuffer(readFrom, writeTo, 0, 0, width, height, 0, 0, width, height, readDepth? GL_DEPTH_BUFFER_BIT : GL_COLOR_BUFFER_BIT, GL_NEAREST);
 }
