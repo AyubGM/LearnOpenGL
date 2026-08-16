@@ -2,6 +2,7 @@
 #include <glad/glad.h>
 #include <stb_image.h>
 #include <iostream>
+#include <utility> // for std::move
 
 Texture2D::Texture2D(const std::string& path, const std::string& type, bool gammaCorrection)
 	: m_Path(path), m_Type(type), m_GammaCorrection(gammaCorrection)
@@ -62,25 +63,73 @@ Texture2D::~Texture2D()
 }
 
 Texture2D::Texture2D(Texture2D&& other) noexcept
-	: m_ID(other.m_ID), m_Width(other.m_Width), m_Height(other.m_Height), m_Path(std::move(other.m_Path)), m_Type(std::move(other.m_Type))
+    : m_ID(other.m_ID)
+    , m_Width(other.m_Width)
+    , m_Height(other.m_Height)
+    , m_Path(std::move(other.m_Path))
+    , m_Type(std::move(other.m_Type))
+    , m_GammaCorrection(other.m_GammaCorrection)
 {
-	other.m_ID = 0;
+    other.m_ID = 0;
+    other.m_Width = 0;
+    other.m_Height = 0;
+    other.m_GammaCorrection = false;
 }
 
 Texture2D& Texture2D::operator=(Texture2D&& other) noexcept
 {
-	if (this != &other)
-	{
-		Delete();
-		m_ID = other.m_ID;
-		m_Width = other.m_Width;
-		m_Height = other.m_Height;
-		m_Path = std::move(other.m_Path);
-		m_Type = std::move(other.m_Type);
+    if (this != &other) {
+        if (m_ID) {
+            Delete();
+        }
 
-		other.m_ID = 0;
+        m_ID = other.m_ID;
+        m_Width = other.m_Width;
+        m_Height = other.m_Height;
+        m_Path = std::move(other.m_Path);
+        m_Type = std::move(other.m_Type);
+        m_GammaCorrection = other.m_GammaCorrection;
+
+        other.m_ID = 0;
+        other.m_Width = 0;
+        other.m_Height = 0;
+        other.m_GammaCorrection = false;
+    }
+    return *this;
+}
+
+void Texture2D::CreateFromData(const void* data, uint32_t width, uint32_t height,
+	GLenum internalFormat, GLenum dataFormat, GLenum dataType,
+	const std::string& typeName)
+{
+	if (!data)
+	{
+		std::cerr << "No data provided for texture creation." << std::endl;
+		return;
 	}
-	return *this;
+
+	if (m_ID)
+	{
+		std::cerr << "Texture already created. Deleting old texture: " << m_Path << std::endl;
+		Delete();
+	}
+
+	m_Width = width;
+	m_Height = height;
+	m_Type = typeName;
+	m_Path = "[raw data]";
+
+	glCreateTextures(GL_TEXTURE_2D, 1, &m_ID);
+	glTextureStorage2D(m_ID, 1, internalFormat, m_Width, m_Height);
+	glTextureSubImage2D(m_ID, 0, 0, 0, m_Width, m_Height, dataFormat, dataType, data);
+
+	glTextureParameteri(m_ID, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTextureParameteri(m_ID, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTextureParameteri(m_ID, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTextureParameteri(m_ID, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	// Only generate mipmaps if you allocated mip levels in Storage
+	// glGenerateTextureMipmap(m_ID);
 }
 
 void Texture2D::Bind(uint32_t slot) const

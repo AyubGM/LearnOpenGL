@@ -1,5 +1,7 @@
 #pragma once
 
+#include <glad/glad.h>
+
 #include <string>
 #include <cstdint>
 
@@ -15,6 +17,10 @@ public:
 	Texture2D& operator=(const Texture2D&) = delete;
 	Texture2D(Texture2D&& other) noexcept;
 	Texture2D& operator=(Texture2D&& other) noexcept;
+
+	void CreateFromData(const void* data, uint32_t width = 4, uint32_t height = 4, GLenum internalFormat = GL_RGBA8, GLenum dataFormat = GL_RGBA,
+		GLenum dataType = GL_UNSIGNED_BYTE,
+		const std::string& typeName = "texture_data");
 
 	void Bind(uint32_t slot = 0) const;
 	void UnBind(uint32_t slot = 0) const;

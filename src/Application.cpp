@@ -27,6 +27,7 @@
 #include <Examples/HDRExample.h>
 #include <Examples/BloomExample.h>
 #include <Examples/DeferredShadingExample.h>
+#include <Examples/SsaoExample.h>
 
 // timing
 float deltaTime = 0.0f;
@@ -71,7 +72,8 @@ int main()
     //ParallaxMappingExample parallaxMappingExample(camera);
 	//HDRExample hRExample(window.GetWidthRef(), window.GetHeightRef(), camera);
     //BloomExample bloomExample(window.GetWidthRef(), window.GetHeightRef(), camera);
-    DeferredShadingExample deferredShadingExample(window.GetWidthRef(), window.GetHeightRef(), camera);
+    //DeferredShadingExample deferredShadingExample(window.GetWidthRef(), window.GetHeightRef(), camera);
+    SsaoExample ssaoExample(window.GetWidthRef(), window.GetHeightRef(), camera);
 
     while(!glfwWindowShouldClose(window.GetGLFWwindow()))
     {
@@ -98,7 +100,8 @@ int main()
         //parallaxMappingExample.Run(g_View, g_Projection);
 		//hRExample.Run(g_View, g_Projection);
         //bloomExample.Run(g_View, g_Projection);
-        deferredShadingExample.Run(g_View, g_Projection);
+        //deferredShadingExample.Run(g_View, g_Projection);
+		ssaoExample.Run(g_View, g_Projection);
 
 
    
