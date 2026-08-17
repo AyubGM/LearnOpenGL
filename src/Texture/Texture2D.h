@@ -18,6 +18,7 @@ public:
 	Texture2D(Texture2D&& other) noexcept;
 	Texture2D& operator=(Texture2D&& other) noexcept;
 
+	void AllocateEmpty(uint32_t width, uint32_t height, GLenum internalFormat);
 	void CreateFromData(const void* data, uint32_t width = 4, uint32_t height = 4, GLenum internalFormat = GL_RGBA8, GLenum dataFormat = GL_RGBA,
 		GLenum dataType = GL_UNSIGNED_BYTE,
 		const std::string& typeName = "texture_data");

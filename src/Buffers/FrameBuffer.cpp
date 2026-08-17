@@ -25,7 +25,7 @@ namespace Utils
 	}
 
 
-	static void AttachColorTexture(uint32_t fboID, uint32_t texID, int samples, GLenum internalFormat, uint32_t width, uint32_t height, int index)
+	static void AttachColorTexture(uint32_t fboID, uint32_t texID, int samples, GLenum internalFormat, uint32_t width, uint32_t height, int index, TextureTarget target)
 	{
 		bool isMultisampled = samples > 1;
 
@@ -35,8 +35,11 @@ namespace Utils
 		}
 		else
 		{
+			// Calculate mip levels if this is a cubemap so it can be sampled with mipmaps later (e.g. prefiltered map)
+			int levels = (target == TextureTarget::TextureCubeMap) ? static_cast<int>(std::floor(std::log2(std::max(width, height)))) + 1 : 1;
 			// glTextureStorage2D intrinsically handles all 6 faces if the target was created as GL_TEXTURE_CUBE_MAP
-			glTextureStorage2D(texID, 1, internalFormat, width, height);
+			glTextureStorage2D(texID, levels, internalFormat, width, height);
+
 
 			GLenum filter = (internalFormat == GL_R32I) ? GL_NEAREST : GL_LINEAR;
 			glTextureParameteri(texID, GL_TEXTURE_MIN_FILTER, filter);
@@ -164,31 +167,34 @@ void FrameBuffer::Invalidate()
 	
 
 	// Color Attachments
-	if (m_ColorAttachmentSpecifications.size())
+	if (!m_ColorAttachmentSpecifications.empty())
 	{
 		m_ColorAttachments.resize(m_ColorAttachmentSpecifications.size());
 
 		for (size_t i = 0; i < m_ColorAttachments.size(); i++)
 		{
-			TextureTarget target = m_Specification.Attachments.Attachments[i].TextureTarget;
+			TextureTarget target = m_ColorAttachmentSpecifications[i].TextureTarget;
 
 			Utils::CreateTextures(target, isMultisampled, 1, &m_ColorAttachments[i]);
 			switch (m_ColorAttachmentSpecifications[i].TextureFormat)
 			{
 			case FramebufferTextureFormat::RGBA8:
-				Utils::AttachColorTexture(m_ID, m_ColorAttachments[i], m_Specification.Samples, GL_RGBA8, m_Specification.Width, m_Specification.Height, i);
+				Utils::AttachColorTexture(m_ID, m_ColorAttachments[i], m_Specification.Samples, GL_RGBA8, m_Specification.Width, m_Specification.Height, static_cast<int>(i), target);
+				break;
+			case FramebufferTextureFormat::RGB16F:
+				Utils::AttachColorTexture(m_ID, m_ColorAttachments[i], m_Specification.Samples, GL_RGB16F, m_Specification.Width, m_Specification.Height, static_cast<int>(i), target);
 				break;
 			case FramebufferTextureFormat::RGBA16F:
-				Utils::AttachColorTexture(m_ID, m_ColorAttachments[i], m_Specification.Samples, GL_RGBA16F, m_Specification.Width, m_Specification.Height, i);
+				Utils::AttachColorTexture(m_ID, m_ColorAttachments[i], m_Specification.Samples, GL_RGBA16F, m_Specification.Width, m_Specification.Height, static_cast<int>(i), target);
 				break;
-			case FramebufferTextureFormat::RED :
-				Utils::AttachColorTexture(m_ID, m_ColorAttachments[i], m_Specification.Samples, GL_R8, m_Specification.Width, m_Specification.Height, i);
+			case FramebufferTextureFormat::RED:
+				Utils::AttachColorTexture(m_ID, m_ColorAttachments[i], m_Specification.Samples, GL_R8, m_Specification.Width, m_Specification.Height, static_cast<int>(i), target);
 				break;
 			case FramebufferTextureFormat::RED_INTEGER:
-				Utils::AttachColorTexture(m_ID, m_ColorAttachments[i], m_Specification.Samples, GL_R32I, m_Specification.Width, m_Specification.Height, i);
+				Utils::AttachColorTexture(m_ID, m_ColorAttachments[i], m_Specification.Samples, GL_R32I, m_Specification.Width, m_Specification.Height, static_cast<int>(i), target);
 				break;
 			case FramebufferTextureFormat::R16F:
-				Utils::AttachColorTexture(m_ID, m_ColorAttachments[i], m_Specification.Samples, GL_R16F, m_Specification.Width, m_Specification.Height, i);
+				Utils::AttachColorTexture(m_ID, m_ColorAttachments[i], m_Specification.Samples, GL_R16F, m_Specification.Width, m_Specification.Height, static_cast<int>(i), target);
 				break;
 			}
 		}
@@ -234,12 +240,12 @@ void FrameBuffer::UnBind() const
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void FrameBuffer::BindFace(uint32_t faceIndex) const
+void FrameBuffer::BindFace(uint32_t faceIndex, uint32_t mipLevel, uint32_t attachmentIndex) const
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, m_ID);
-	if (!m_ColorAttachments.empty())
+	if (attachmentIndex < m_ColorAttachments.size())
 	{
-		glNamedFramebufferTextureLayer(m_ID, GL_COLOR_ATTACHMENT0, m_ColorAttachments[0], 0, faceIndex);
+		glNamedFramebufferTextureLayer(m_ID, GL_COLOR_ATTACHMENT0 + attachmentIndex, m_ColorAttachments[attachmentIndex], mipLevel, faceIndex);
 	}
 }
 
@@ -269,4 +275,9 @@ uint32_t FrameBuffer::GetColorAttachment(uint32_t index) const
 void FrameBuffer::ReadFromReadTo(const uint32_t readFrom, const uint32_t writeTo, const uint32_t width, const uint32_t height, bool readDepth)
 {
 	glBlitNamedFramebuffer(readFrom, writeTo, 0, 0, width, height, 0, 0, width, height, readDepth? GL_DEPTH_BUFFER_BIT : GL_COLOR_BUFFER_BIT, GL_NEAREST);
+}
+
+void FrameBuffer::SetDrawBuffer(GLenum buffer) const
+{
+	glNamedFramebufferDrawBuffer(m_ID, buffer);
 }

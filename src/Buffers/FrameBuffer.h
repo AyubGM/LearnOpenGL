@@ -1,6 +1,8 @@
 #pragma once
 #include <cstdint>
 #include <vector>
+//TEMP
+#include <glad/glad.h>
 
 enum class TextureTarget
 {
@@ -16,6 +18,7 @@ enum class FramebufferTextureFormat
 
 	// Color
 	RGBA8,
+	RGB16F,
 	RGBA16F,
 	RED,
 	RED_INTEGER,
@@ -70,7 +73,7 @@ public:
 	void Bind() const;
 	void UnBind() const;
 
-	void BindFace(uint32_t faceIndex) const;
+	void BindFace(uint32_t faceIndex, uint32_t mipLevel = 0, uint32_t attachmentIndex = 0) const;
 
 	void Resize(uint32_t width, uint32_t height);
 
@@ -81,6 +84,9 @@ public:
 	static void ReadFromReadTo(const uint32_t readFrom, const uint32_t writeTo, const uint32_t width, const uint32_t height, bool readDepth = false);
 
 	uint32_t GetID() const { return m_ID; }
+
+	//TEMP
+	void SetDrawBuffer(GLenum buffer) const;
 
 private:
 	void Invalidate();

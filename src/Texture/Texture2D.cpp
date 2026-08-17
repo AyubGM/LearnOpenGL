@@ -10,51 +10,83 @@ Texture2D::Texture2D(const std::string& path, const std::string& type, bool gamm
 	int width, height, channels;
 	stbi_set_flip_vertically_on_load(true);
 
-	unsigned char* data = stbi_load(path.c_str(), &width, &height, &channels, 0);
-	if (data)
+	if (stbi_is_hdr(path.c_str()))
 	{
-		m_Width = width;
-		m_Height = height;
-
-		GLenum internalFormat = 0, dataFormat = 0;
-		if (channels == 1)
+		float* data = stbi_loadf(path.c_str(), &width, &height, &channels, 0);
+		if (data)
 		{
-			internalFormat = GL_R8;
-			dataFormat = GL_RED;
+			m_Width = width;
+			m_Height = height;
+
+			GLenum internalFormat = (channels == 4) ? GL_RGBA16F : GL_RGB16F;
+			GLenum dataFormat = (channels == 4) ? GL_RGBA : GL_RGB;
+
+			glCreateTextures(GL_TEXTURE_2D, 1, &m_ID);
+			glTextureStorage2D(m_ID, 1, internalFormat, m_Width, m_Height);
+			glTextureSubImage2D(m_ID, 0, 0, 0, m_Width, m_Height, dataFormat, GL_FLOAT, data);
+
+			glTextureParameteri(m_ID, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTextureParameteri(m_ID, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTextureParameteri(m_ID, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+			glTextureParameteri(m_ID, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+			stbi_image_free(data);
 		}
-		else if (channels == 3)
+		else
 		{
-			internalFormat = m_GammaCorrection ? GL_SRGB8 : GL_RGB8;
-			dataFormat = GL_RGB;
+			std::cout << "Failed to load HDR texture: " << path << std::endl;
 		}
-		else if (channels == 4)
-		{
-			internalFormat = m_GammaCorrection ? GL_SRGB8_ALPHA8 : GL_RGBA8;
-			dataFormat = GL_RGBA;
-		}
-
-		glCreateTextures(GL_TEXTURE_2D, 1, &m_ID);
-
-		// Pre-allocate memory on the GPU
-		glTextureStorage2D(m_ID, 1, internalFormat, m_Width, m_Height);
-
-		// Upload pixel data
-		glTextureSubImage2D(m_ID, 0, 0, 0, m_Width, m_Height, dataFormat, GL_UNSIGNED_BYTE, data);
-
-		// Set filtering parameters
-		glTextureParameteri(m_ID, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		glTextureParameteri(m_ID, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTextureParameteri(m_ID, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTextureParameteri(m_ID, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-		glGenerateTextureMipmap(m_ID);
-
-		stbi_image_free(data);
 	}
 	else
 	{
-		std::cout << "Failed to load texture: " << path << std::endl;
+		unsigned char* data = stbi_load(path.c_str(), &width, &height, &channels, 0);
+		if (data)
+		{
+			m_Width = width;
+			m_Height = height;
+
+			GLenum internalFormat = 0, dataFormat = 0;
+			if (channels == 1)
+			{
+				internalFormat = GL_R8;
+				dataFormat = GL_RED;
+			}
+			else if (channels == 3)
+			{
+				internalFormat = m_GammaCorrection ? GL_SRGB8 : GL_RGB8;
+				dataFormat = GL_RGB;
+			}
+			else if (channels == 4)
+			{
+				internalFormat = m_GammaCorrection ? GL_SRGB8_ALPHA8 : GL_RGBA8;
+				dataFormat = GL_RGBA;
+			}
+
+			glCreateTextures(GL_TEXTURE_2D, 1, &m_ID);
+
+			// Pre-allocate memory on the GPU
+			glTextureStorage2D(m_ID, 1, internalFormat, m_Width, m_Height);
+
+			// Upload pixel data
+			glTextureSubImage2D(m_ID, 0, 0, 0, m_Width, m_Height, dataFormat, GL_UNSIGNED_BYTE, data);
+
+			// Set filtering parameters
+			glTextureParameteri(m_ID, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+			glTextureParameteri(m_ID, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTextureParameteri(m_ID, GL_TEXTURE_WRAP_S, GL_REPEAT);
+			glTextureParameteri(m_ID, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+			glGenerateTextureMipmap(m_ID);
+
+			stbi_image_free(data);
+		}
+		else
+		{
+			std::cout << "Failed to load texture: " << path << std::endl;
+		}
 	}
+
+	
 }
 
 Texture2D::~Texture2D()
@@ -96,6 +128,29 @@ Texture2D& Texture2D::operator=(Texture2D&& other) noexcept
         other.m_GammaCorrection = false;
     }
     return *this;
+}
+
+void Texture2D::AllocateEmpty(uint32_t width, uint32_t height, GLenum internalFormat)
+{
+	if (m_ID)
+	{
+		Delete();
+	}
+
+	m_Width = width;
+	m_Height = height;
+
+	glCreateTextures(GL_TEXTURE_2D, 1, &m_ID);
+
+	// glTextureStorage2D allocates immutable storage for all 6 faces at once when given GL_TEXTURE_CUBE_MAP
+	glTextureStorage2D(m_ID, 1, internalFormat, m_Width, m_Height);
+
+	glTextureParameteri(m_ID, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTextureParameteri(m_ID, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTextureParameteri(m_ID, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTextureParameteri(m_ID, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	
 }
 
 void Texture2D::CreateFromData(const void* data, uint32_t width, uint32_t height,
