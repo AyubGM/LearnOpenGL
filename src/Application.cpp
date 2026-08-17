@@ -28,6 +28,7 @@
 #include <Examples/BloomExample.h>
 #include <Examples/DeferredShadingExample.h>
 #include <Examples/SsaoExample.h>
+#include <Examples/PBRExample.h>
 
 // timing
 float deltaTime = 0.0f;
@@ -73,7 +74,8 @@ int main()
 	//HDRExample hRExample(window.GetWidthRef(), window.GetHeightRef(), camera);
     //BloomExample bloomExample(window.GetWidthRef(), window.GetHeightRef(), camera);
     //DeferredShadingExample deferredShadingExample(window.GetWidthRef(), window.GetHeightRef(), camera);
-    SsaoExample ssaoExample(window.GetWidthRef(), window.GetHeightRef(), camera);
+    //SsaoExample ssaoExample(window.GetWidthRef(), window.GetHeightRef(), camera);
+    PBRExample pBRExample(camera);
 
     while(!glfwWindowShouldClose(window.GetGLFWwindow()))
     {
@@ -101,7 +103,8 @@ int main()
 		//hRExample.Run(g_View, g_Projection);
         //bloomExample.Run(g_View, g_Projection);
         //deferredShadingExample.Run(g_View, g_Projection);
-		ssaoExample.Run(g_View, g_Projection);
+		//ssaoExample.Run(g_View, g_Projection);
+		pBRExample.Run(g_View, g_Projection);
 
 
    

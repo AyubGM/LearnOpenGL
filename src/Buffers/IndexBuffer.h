@@ -20,12 +20,16 @@ public:
 	void UnBind() const;
 	void Delete();
 
+	void SetData(const uint32_t* indices, uint32_t count);
+
 	uint32_t GetCount() const { return m_Count; }
 
 
 private:
 	uint32_t m_ID = 0;
 	uint32_t m_Count = 0;
+
+	bool m_Initialized = false;
 
 };
 
