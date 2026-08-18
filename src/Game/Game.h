@@ -2,6 +2,8 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "SpriteRenderer.h"
+#include <memory>
 
 enum class GameState
 {
@@ -31,6 +33,7 @@ public:
     uint32_t            Width, Height;
 
 private:
+    std::unique_ptr<SpriteRenderer> m_SpriteRenderer;
 
 };
 

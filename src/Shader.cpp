@@ -147,6 +147,28 @@ Shader::~Shader()
 		Delete();
 	}
 
+Shader::Shader(Shader&& other) noexcept
+	: m_ID(other.m_ID), m_Name(std::move(other.m_Name)), m_UniformLocationCache(std::move(other.m_UniformLocationCache))
+{
+	other.m_ID = 0; // Prevent destructor from deleting the OpenGL program
+}
+
+Shader& Shader::operator=(Shader&& other) noexcept
+{
+	if (this != &other)
+	{
+		if (m_ID)
+			Delete();
+
+		m_ID = other.m_ID;
+		m_Name = std::move(other.m_Name);
+		m_UniformLocationCache = std::move(other.m_UniformLocationCache);
+
+		other.m_ID = 0;
+	}
+	return *this;
+}
+
 void Shader::Bind() const
 	{
 		glUseProgram(m_ID);

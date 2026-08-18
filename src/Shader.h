@@ -22,6 +22,14 @@ public:
     Shader(const char* vertexPath, const char* fragmentPath);
     Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath);
     ~Shader();
+
+    // Prevent copying (prevents duplicate glDeleteProgram calls)
+    Shader(const Shader&) = delete;
+    Shader& operator=(const Shader&) = delete;
+
+    Shader(Shader&& other) noexcept;
+    Shader& operator=(Shader&& other) noexcept;
+
     void Bind() const;
     void UnBind() const;
     void Delete();

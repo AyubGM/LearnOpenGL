@@ -13,6 +13,10 @@ CONFIGURE_DEPENDS
 "vendors/*.cpp"
 )
 
+if(MSVC)
+    add_compile_options(/MP)
+endif()
+
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SOURCES})
 
 # --- BUILD ASSIMP WITH YOUR PROJECT ---
@@ -82,4 +86,9 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
     ${CMAKE_SOURCE_DIR}/src/Resources/Objects $<TARGET_FILE_DIR:${PROJECT_NAME}>/Resources/Objects
+)
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_SOURCE_DIR}/src/Game/Assets $<TARGET_FILE_DIR:${PROJECT_NAME}>/Assets
 )
