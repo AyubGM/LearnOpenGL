@@ -18,7 +18,7 @@ std::string get_file_contents(const char* filename);
 class Shader
 {
 public:
-    
+	Shader() = default;
     Shader(const char* vertexPath, const char* fragmentPath);
     Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath);
     ~Shader();

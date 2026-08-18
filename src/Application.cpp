@@ -30,6 +30,9 @@
 #include <Examples/SsaoExample.h>
 #include <Examples/PBRExample.h>
 #include <Examples/IBLExample.h>
+#include <Game/Game.h>
+#include <Game/ResourceManager.h>
+#include <Events/EventDispatcher.h>
 
 // timing
 float deltaTime = 0.0f;
@@ -77,11 +80,38 @@ int main()
     //DeferredShadingExample deferredShadingExample(window.GetWidthRef(), window.GetHeightRef(), camera);
     //SsaoExample ssaoExample(window.GetWidthRef(), window.GetHeightRef(), camera);
     //PBRExample pBRExample(camera);
-    IBLExample iBLExample(window.GetWidthRef(), window.GetHeightRef(), camera);
+    //IBLExample iBLExample(window.GetWidthRef(), window.GetHeightRef(), camera);
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	Game game(window.GetWidthRef(), window.GetHeightRef());
+
+	game.Init();
+
+	g_EventDispatcher.AddEventListener<KeyEvent>([&game](const KeyEvent& e) {
+
+		if (e.Key >= 0 && e.Key < 1024)
+		{
+			if (e.Action == GLFW_PRESS)
+                game.Keys[e.Key] = true;
+			else if (e.Action == GLFW_RELEASE)
+                game.Keys[e.Key] = false;
+		}
+
+		});
 
     while(!glfwWindowShouldClose(window.GetGLFWwindow()))
     {
         DeltaTime(window, camera);
+        window.OnUpdate();
+
+		game.ProcessInput(deltaTime);
+		game.Update(deltaTime);
+
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+		game.Render();
         
         // configure transformation matrices
         g_Projection = glm::perspective(glm::radians(45.0f), (float)window.GetWidth() / (float)window.GetHeight(), 0.1f, 1000.0f);
@@ -107,13 +137,11 @@ int main()
         //deferredShadingExample.Run(g_View, g_Projection);
 		//ssaoExample.Run(g_View, g_Projection);
 		//pBRExample.Run(g_View, g_Projection);
-        iBLExample.Run(g_View, g_Projection);
-
-
-   
-        window.OnUpdate();
+        //iBLExample.Run(g_View, g_Projection);
  
     }
+
+	ResourceManager::Clear();
 
     glfwTerminate();
     return 0;
