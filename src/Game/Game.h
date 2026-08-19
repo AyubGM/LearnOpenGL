@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 #include "SpriteRenderer.h"
 #include <memory>
+#include "GameLevel.h"
 
 enum class GameState
 {
@@ -28,12 +29,20 @@ public:
 
 public:
     // game state
-    GameState               State;
+    GameState               m_State;
     bool                    Keys[1024];
-    uint32_t            Width, Height;
+    uint32_t            m_Width, m_Height;
 
 private:
     std::unique_ptr<SpriteRenderer> m_SpriteRenderer;
+    std::vector<GameLevel> m_Levels;
+    uint32_t m_ActiveLevelIndex;
+
+
+	// Player attributes
+
+
+	GameObject m_Player;
 
 };
 
