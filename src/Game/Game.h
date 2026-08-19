@@ -5,6 +5,8 @@
 #include "SpriteRenderer.h"
 #include <memory>
 #include "GameLevel.h"
+#include "GameObject.h"
+#include "BallObject.h"
 
 enum class GameState
 {
@@ -27,10 +29,16 @@ public:
     void Update(float dt);
     void Render();
 
+    void DoCollisions();
+
+private:
+    bool CheckCollision(GameObject& one, GameObject& two);
+    bool CheckCollision(BallObject& one, GameObject& two);
+
 public:
     // game state
     GameState               m_State;
-    bool                    Keys[1024];
+    bool                    Keys[1024]{false};
     uint32_t            m_Width, m_Height;
 
 private:
@@ -39,10 +47,9 @@ private:
     uint32_t m_ActiveLevelIndex;
 
 
-	// Player attributes
-
 
 	GameObject m_Player;
+	BallObject m_Ball;
 
 };
 
